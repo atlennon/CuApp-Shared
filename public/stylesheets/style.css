@@ -1,10 +1,26 @@
 body {
   text-align:center; 	
   padding: 50px;
-  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background: #6699CC;
+  background: #EEE;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
       }
 
 a {
   color: #00B7FF;
+}
+
+#login-button:hover {
+	cursor: pointer;
+}
+
+#login-button {
+	width: 80px;
+	height: 40px;
+	border: none;
+	background: #2180b7;
+	color: #FFF;
+	border-radius: 5px;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	margin: 20px;
+	-webkit-transition: background 0.3s;
 }
