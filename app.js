@@ -1,48 +1,35 @@
-var express = require('express'),
-    mysql = require('mysql'),
-	mongoose = require('mongoose'),
-	exphbs  = require('express3-handlebars'),
-	path = require('path'),
-    app = express();
-	
-var	user = "john";
-	
-// DB connection setup
 
-mongoose.connect('mongodb://ea7e2872-1554-4ff1-b40e-e0657eaf2a35:2e81a8e2-e837-418b-9f59-3093eef12cb6@10.0.55.70:25327/db/contacts');
- 
- /*
-var connection = mysql.createConnection({
-        host:'localhost',
-        user:'uVY6VvL4pXhkS',
-        password:'pvpUV3ZnkZGJ8',
-		port:10000
-    });	
-*/
-	
-//All environments
-app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+/**
+	* Node.js Login Boilerplate
+	* More Info : http://bit.ly/LsODY8
+	* Copyright (c) 2013 Stephen Braitsch
+**/
 
-// development only
-if ('development' == app.get('env')) {
-app.use(express.errorHandler());
-}
+var express = require('express');
+var http = require('http');
+var app = express();
 
-//Render homepage
-app.get('/', function (req, res) {
-    res.render('home');
+app.configure(function(){
+	app.set('port', 3000);
+	app.set('views', __dirname + '/app/server/views');
+	app.set('view engine', 'jade');
+	app.locals.pretty = true;
+//	app.use(express.favicon());
+	app.use(express.logger('dev'));
+	app.use(express.bodyParser());
+	app.use(express.cookieParser());
+	app.use(express.session({ secret: 'super-duper-secret-secret' }));
+	app.use(express.methodOverride());
+	app.use(require('stylus').middleware({ src: __dirname + '/app/public' }));
+	app.use(express.static(__dirname + '/app/public'));
 });
 
-app.listen(app.get('port'), function(){
-console.log('Express server listening on port ' + app.get('port'));
+app.configure('development', function(){
+	app.use(express.errorHandler());
 });
+
+require('./app/server/router')(app);
+
+http.createServer(app).listen(app.get('port'), function(){
+	console.log("Express server listening on port " + app.get('port'));
+})
