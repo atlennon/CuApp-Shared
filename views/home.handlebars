@@ -1,1 +1,44 @@
-<h1>Example App: Home</h1>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script language="javascript">
+$('input[type="text"]').each(function(){
+ 
+    this.value = $(this).attr('title');
+    $(this).addClass('text-label');
+ 
+    $(this).focus(function(){
+        if(this.value == $(this).attr('title')) {
+            this.value = '';
+            $(this).removeClass('text-label');
+        }
+    });
+ 
+    $(this).blur(function(){
+        if(this.value == '') {
+            this.value = $(this).attr('title');
+            $(this).addClass('text-label');
+        }
+    });
+});
+</script>
+<h1>Welcome to the Mobile Application currently in development.</h1>
+
+<html>
+<head>
+<link(rel='stylesheet', href='/stylesheets/style.css')>
+<title>
+Login page
+</title>
+</head>
+<body>
+<center><FORM method="post">
+<TABLE>
+<TR>
+    <TD><INPUT type="text" value="" name="username" title="Username"/><TD>
+</TR>
+<TR>
+    <TD><INPUT type="text" value="" name="username" title="Password"/><TD>
+</TR>
+</TABLE>
+</FORM></center>
+</body>
+</html>

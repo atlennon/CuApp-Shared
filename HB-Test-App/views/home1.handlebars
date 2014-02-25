@@ -1,0 +1,41 @@
+<h1>Welcome to the Mobile Application currently in development.
+
+<html>
+<head>
+<title>CUApp Login</title>
+</head>
+<body>
+<center><FORM method="post">
+<TABLE>
+<TR>
+    <TD><INPUT type="text" value="" name="username" title="Username"/><TD>
+</TR>
+<TR>
+    <TD><INPUT type="text" value="" name="username" title="Password"/><TD>
+</TR>
+</TABLE>
+</FORM></center>
+</body>
+</html>
+<script language="javascript">
+$('input[type="text"]').each(function(){
+ 
+    this.value = $(this).attr('title');
+    $(this).addClass('text-label');
+ 
+    $(this).focus(function(){
+        if(this.value == $(this).attr('title')) {
+            this.value = '';
+            $(this).removeClass('text-label');
+        }
+    });
+ 
+    $(this).blur(function(){
+        if(this.value == '') {
+            this.value = $(this).attr('title');
+            $(this).addClass('text-label');
+        }
+    });
+});
+</script>
+</h1>
