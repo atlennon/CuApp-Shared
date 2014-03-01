@@ -8,9 +8,12 @@
 var express = require('express');
 var http = require('http');
 var app = express();
+var port = (process.env.VMC_APP_PORT || 80);
+var host = (process.env.VCAP_APP_HOST || 'localhost');
+var db = require('./app/server/modules/db-connect');
 
 app.configure(function(){
-	app.set('port', 3000);
+	app.set('port', 80);
 	app.set('views', __dirname + '/app/server/views');
 	app.set('view engine', 'jade');
 	app.locals.pretty = true;
@@ -30,6 +33,7 @@ app.configure('development', function(){
 
 require('./app/server/router')(app);
 
-http.createServer(app).listen(app.get('port'), function(){
-	console.log("Express server listening on port " + app.get('port'));
-})
+db.connect();
+	
+http.createServer(app).listen(port, host);
+console.log("The server is running on port " + port);

@@ -1,23 +1,44 @@
 
-var crypto 		= require('crypto');
-var MongoDB 	= require('mongodb').Db;
-var Server 		= require('mongodb').Server;
-var moment 		= require('moment');
+var crypto = require('crypto');
+var moment = require('moment');
+var mongo = require('mongoskin');
+var MongoClient = mongo.MongoClient;
 
-var dbPort 		= 27017;
-var dbHost 		= 'localhost';
-var dbName 		= 'db';
+//Determine DB url
 
-/* establish the database connection */
+if(process.env.VCAP_SERVICES){
+    var env = JSON.parse(process.env.VCAP_SERVICES);
+    var connectinfo = env['mongodb-1.8'][0]['credentials'];
+}
+else{
+    var connectinfo = {
+    "hostname":"localhost",
+    "port":27017,
+    "username":"",
+    "password":"",
+    "name":"",
+    "db":"db"
+    }
+}
+var generate_mongo_url = function(obj){
+    obj.hostname = (obj.hostname || 'localhost');
+    obj.port = (obj.port || 27017);
+    obj.db = (obj.db || 'db');
+    if(obj.username && obj.password){
+        return "mongodb://" + obj.username + ":" + obj.password + "@" + obj.hostname + ":" + obj.port + "/" + obj.db;
+    }
+    else{
+        return "mongodb://" + obj.hostname + ":" + obj.port + "/" + obj.db;
+    }
+}
+var mongourl = generate_mongo_url(connectinfo);
 
-var db = new MongoDB(dbName, new Server(dbHost, dbPort, {auto_reconnect: true}), {w: 1});
-	db.open(function(e, d){
-	if (e) {
-		console.log(e);
-	}	else{
-		console.log('connected to database :: ' + dbName);
-	}
-});
+//var db = new MongoDB(dbName, new Server(dbHost, dbPort, {auto_reconnect: true}), {w: 1});
+
+//establish the database connection
+
+var db = MongoClient.connect(mongourl, {native_parser:true});
+
 var accounts = db.collection('accounts');
 
 /* login validation methods */
