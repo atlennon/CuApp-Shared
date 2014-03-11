@@ -3,55 +3,79 @@ raiseText()
 	text-shadow: -1px 1px 0 white
 	-moz-text-shadow: -1px 1px 0 white
 	-webkit-text-shadow: -1px 1px 0 white
-
-body 
+	
+body
 	margin  0
 	padding  0
 	height  100%
-	background rgb(242,249,254)
-	background -moz-radial-gradient(center, ellipse cover,  rgba(242,249,254,1) 0%, rgba(214,240,253,1) 100%) /* FF3.6+ */
-	background -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(242,249,254,1)), color-stop(100%,rgba(214,240,253,1))) /* Chrome,Safari4+ */
-	background -webkit-radial-gradient(center, ellipse cover,  rgba(242,249,254,1) 0%,rgba(214,240,253,1) 100%) /* Chrome10+,Safari5.1+ */
-	background -o-radial-gradient(center, ellipse cover,  rgba(242,249,254,1) 0%,rgba(214,240,253,1) 100%) /* Opera 12+ */
-	background -ms-radial-gradient(center, ellipse cover,  rgba(242,249,254,1) 0%,rgba(214,240,253,1) 100%) /* IE10+ */
-	background radial-gradient(center, ellipse cover,  rgba(242,249,254,1) 0%,rgba(214,240,253,1) 100%) /* W3C */
+	width 100%
+	background-repeat no-repeat
+	background-position center 0%
+	background-image url('twisted.jpg')
+	background-size 100%
+	
+/* FF3.6+ */
+/* Chrome,Safari4+ */
+/* Chrome10+,Safari5.1+ */
+/* Opera 12+ */
+/* IE10+ */
+/* W3C */
 	
 // login form //
     
 #login-container{
-	width 340px
-	margin 160px auto	
+	
+	float center
+	width 360px 
+	margin-right auto
+	margin-left auto
+	
 	label{
-		margin 15px 0 5px 5px
+		margin -2px 0 5px 5px
 	}
 	button{
-		width 150px
+		width 300px
 		padding 6px 40px 6px 40px
-		float left
-		margin-top 15px
+		float center
+		margin-top 6px
 	}
 	.checkbox{
-		margin 23px 0 0 180px
+		margin 10px 0 0 180px
 	}
 	.btm-links{
 		text-align center
-		margin-top 10px
+		margin-top -30px
+	}
+	.outer{
+		display table
+		position absolute
+		height 100%
+		width 100%
+	}
+	.middle{
+		display table-cell
+		vertical-align middle
+	}
+	.inner{
+		margin-left auto
+		margin-right auto 
+		width 360px
 	}
 	#create-account{
 		float:right
-		margin-right:13px
+		margin-right:2px
 	}	
 	#forgot-password{
 		float:left
-		margin-left:10px
+		margin-left:2px
 	}
 }
 
 // account form on signup & home page //
 
 #account-form-container
-	width 460px
-	margin 100px auto
+	width 460px 
+	margin 0 auto
 #country-list
 	width 280px
 .modal-form-errors li
@@ -100,7 +124,16 @@ body
 	top 1px
 	right 8px
 	position absolute
-	 
+	
+//Personal data form //
+
+#personaldata-container
+	width 460px 
+	margin 0 auto
+	
+
+
+	
 // support pages //
 
 #print
