@@ -1,0 +1,17 @@
+
+extends layout
+
+block content
+	div.container(style='margin:20px')
+		table.table.table-bordered.table-striped
+			thead
+				tr
+					th(style='width:40px') #
+					th(style='width:180px') IP
+					th(style='width:200px') Time
+			tbody
+			- for (var i = 0; i < visits.length; i++)
+				tr
+					td= i+1
+					td= visits[i].ip
+					td= visits[i].ts

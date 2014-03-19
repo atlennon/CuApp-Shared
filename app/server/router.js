@@ -1,8 +1,8 @@
 
 var CT = require('./modules/country-list');
+var ST = require('./modules/state-list');
 var AM = require('./modules/account-manager');
 var EM = require('./modules/email-dispatcher');
-var RV = require('./modules/record-visit');
 
 module.exports = function(app) {
 
@@ -10,7 +10,7 @@ module.exports = function(app) {
 
 	app.get('/', function(req, res){
 	// capture IP address of visitor
-	RV.record(req, res);
+	AM.recordip(req, res);
 	// check if the user's credentials are saved in a cookie //
 		if (req.cookies.user == undefined || req.cookies.pass == undefined){
 			res.render('login', { title: 'Hello - Please Login To Your Account' });
@@ -19,7 +19,7 @@ module.exports = function(app) {
 			AM.autoLogin(req.cookies.user, req.cookies.pass, function(o){
 				if (o != null){
 				    req.session.user = o;
-					res.redirect('/home');
+					res.redirect('/basicinfo');
 				}	else{
 					res.render('login', { title: 'Hello - Please Login To Your Account' });
 				}
@@ -42,16 +42,15 @@ module.exports = function(app) {
 		});
 	});
 	
-// logged-in user homepage //
+// logged-in user account homepage //
 	
-	app.get('/home', function(req, res) {
+	  app.get('/home', function(req, res) {
 	    if (req.session.user == null){
 	// if user is not logged-in redirect back to login page //
 	        res.redirect('/');
 	    }   else{
-			res.render('home', {
+			  res.render('home', {
 				title : 'Control Panel',
-				countries : CT,
 				udata : req.session.user
 			});
 	    }
@@ -63,7 +62,6 @@ module.exports = function(app) {
 				user 		: req.param('user'),
 				name 		: req.param('name'),
 				email 		: req.param('email'),
-				country 	: req.param('country'),
 				pass		: req.param('pass')
 			}, function(e, o){
 				if (e){
@@ -85,10 +83,55 @@ module.exports = function(app) {
 		}
 	});
 	
+
+// Applicant info page //
+	
+	  app.get('/basicinfo', function(req, res) {
+	    if (req.session.user == null){
+	// if user is not logged-in redirect back to login page //
+	        res.redirect('/');
+	    }   else {AM.getMember(req.session.user.user,function(e, o){
+			if (o) currentMember = o; 
+			else currentMember = {};
+			});
+				res.render('basicinfo', {
+				title : 'Member Info',
+				states : ST,
+				udata : req.session.user,
+				mdata : currentMember
+				});
+		}
+	});
+	
+	app.post('/basicinfo', function(req, res){
+			if (req.param('user') != undefined) {
+				AM.saveMember({
+					creator		: req.param('user'),
+					fname 		: req.param('fname'),
+					mname 		: req.param('lname'),
+					lname 		: req.param('lname'),
+					email 		: req.param('email'),
+					state	 	: req.param('state')
+				}, function(e, o){
+					if (e){
+						res.send('error-submitting-info', 400);
+					}	else{
+						req.session.user = o;
+						res.send('ok', 200);
+					}
+				});
+				}
+				else if (req.param('logout') == 'true'){
+				res.clearCookie('user');
+				res.clearCookie('pass');
+				req.session.destroy(function(e){ res.send('ok', 200); });
+				}	
+	});
+
 // creating new accounts //
 	
 	app.get('/signup', function(req, res) {
-		res.render('signup', {  title: 'Signup', countries : CT });
+		res.render('signup', {  title: 'Signup'});
 	});
 	
 	app.post('/signup', function(req, res){
@@ -96,8 +139,7 @@ module.exports = function(app) {
 			name 	: req.param('name'),
 			email 	: req.param('email'),
 			user 	: req.param('user'),
-			pass	: req.param('pass'),
-			country : req.param('country')
+			pass	: req.param('pass')
 		}, function(e){
 			if (e){
 				res.send(e, 400);
@@ -159,6 +201,14 @@ module.exports = function(app) {
 		})
 	});
 	
+// view visits //
+	
+	app.get('/visits', function(req, res) {
+		AM.getAllVisits( function(e, ips){
+			res.render('visits', { title : 'Visits', visits : ips });
+		})
+	});
+	
 // view & delete accounts //
 	
 	app.get('/print', function(req, res) {
@@ -186,5 +236,6 @@ module.exports = function(app) {
 	});
 	
 	app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });
+
 
 };

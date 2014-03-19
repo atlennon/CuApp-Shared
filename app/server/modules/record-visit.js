@@ -36,7 +36,7 @@ var mongourl = generate_mongo_url(connectinfo);
 var db = MongoClient.connect(mongourl, {native_parser:true});
 
 /* Record visitor IP's in DB*/
-module.exports.record = function(req, res){
+module.exports.recordip = function(req, res){
     /* Connect to the DB and auth */
 			object_to_insert = { 'ip': req.connection.remoteAddress, 'ts': new Date() };
 			db.bind('ips');

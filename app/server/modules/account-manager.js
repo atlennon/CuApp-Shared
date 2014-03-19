@@ -3,6 +3,7 @@ var crypto = require('crypto');
 var moment = require('moment');
 var mongo = require('mongoskin');
 var MongoClient = mongo.MongoClient;
+currentMember = new Object();
 
 //Determine DB url
 
@@ -40,6 +41,8 @@ var mongourl = generate_mongo_url(connectinfo);
 var db = MongoClient.connect(mongourl, {native_parser:true});
 
 var accounts = db.collection('accounts');
+var members = db.collection('members');
+var ips = db.collection('ips');
 
 /* login validation methods */
 
@@ -72,6 +75,16 @@ exports.manualLogin = function(user, pass, callback)
 }
 
 /* record insertion, update & deletion methods */
+
+
+/* Record IP of visitors */
+exports.recordip = function(req, res){
+    
+			object_to_insert = { 'ip': req.connection.remoteAddress, 'ts': new Date() };
+			db.bind('ips');
+            db.ips.insert(object_to_insert, {safe:true}, function(err, inserted) {
+		});
+}
 
 exports.addNewAccount = function(newData, callback)
 {
@@ -118,6 +131,42 @@ exports.updateAccount = function(newData, callback)
 	});
 }
 
+
+exports.getMember = function(user, callback)
+{
+	members.findOne({creator:user}, function(e, o) {
+		if (o != null){
+		//	callback(null,null); }	else {
+			callback(null, o);
+			}
+	});
+}
+
+exports.saveMember = function(newData, callback)
+{
+	members.findOne({lname:newData.lname}, function(e, o){
+		if (o){
+		o.fname 	= newData.fname;
+		o.mname 	= newData.mname;
+		o.lname 	= newData.lname;
+		o.email 	= newData.email;
+		o.state 	= newData.state;
+		o.user		= newData.creator;
+		// Update record //
+			members.save(o, {safe: true}, function(err) {
+					if (err) callback(err);
+					else callback(null, o);
+				});
+				}
+		else{
+				// append date stamp when record was created //
+				newData.date = moment().format('MMMM Do YYYY, h:mm:ss a');
+				// Insert new record //
+				members.insert(newData, {safe: true}, callback);
+			}
+});
+}
+
 exports.updatePassword = function(email, newPass, callback)
 {
 	accounts.findOne({email:email}, function(e, o){
@@ -132,7 +181,7 @@ exports.updatePassword = function(email, newPass, callback)
 	});
 }
 
-/* account lookup methods */
+/* record lookup methods */
 
 exports.deleteAccount = function(id, callback)
 {
@@ -154,6 +203,15 @@ exports.validateResetLink = function(email, passHash, callback)
 exports.getAllRecords = function(callback)
 {
 	accounts.find().toArray(
+		function(e, res) {
+		if (e) callback(e)
+		else callback(null, res)
+	});
+};
+
+exports.getAllVisits = function(callback)
+{
+	ips.find().toArray(
 		function(e, res) {
 		if (e) callback(e)
 		else callback(null, res)

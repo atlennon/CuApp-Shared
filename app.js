@@ -8,12 +8,12 @@
 var express = require('express');
 var http = require('http');
 var app = express();
-var port = (process.env.VMC_APP_PORT || 80);
+var port = (process.env.VMC_APP_PORT || 3000);
 var host = (process.env.VCAP_APP_HOST || 'localhost');
 var db = require('./app/server/modules/db-connect');
 
 app.configure(function(){
-	app.set('port', 80);
+	app.set('port', 3000);
 	app.set('views', __dirname + '/app/server/views');
 	app.set('view engine', 'jade');
 	app.locals.pretty = true;

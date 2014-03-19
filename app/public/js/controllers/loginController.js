@@ -12,24 +12,3 @@ function LoginController()
 	$('#get-credentials').on('hidden', function(){ $('#user-tf').focus(); });
 
 }
-
-function inputFocus(i)
-{
-	if(i.value==i.defaultValue)
-	{
-		i.value="";
-		style.color="#000";
-	}
-}
-
-function inputBlur(i)
-{
-	if(i.value==i.defaultValue)
-	{
-		if(i.value=="")
-		{
-			i.value=defaultValue;
-			style.color="#888";
-		}
-	}
-}
