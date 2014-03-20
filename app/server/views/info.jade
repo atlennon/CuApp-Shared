@@ -7,10 +7,10 @@
 input(type='hidden', value= user._id)#userId
 input(type='hidden', value=user.user)#user-tf
 
-#account-form-container
-	form(method="post")#account-form.form-vertical.well.span4
+#info-form-container
+	form(method="post")#info-form.form-vertical.well.span4
 		h1
-		p#sub1.subheading Enter Member Information
+		p#sub1.subheading
 		hr
 		fieldset
 			#fname-cg.control-group
@@ -37,8 +37,8 @@ input(type='hidden', value=user.user)#user-tf
 							option(selected=item.name == member.state)= item.name
 //			hr
 //			.form-actions
-//				button(type='button')#account-form-btn1.btn
-//				button(type='submit')#account-form-btn2.btn
+//				button(type='button')#info-form-btn1.btn
+//				button(type='submit')#info-form-btn2.btn
 
 // display form errors in a custom modal window //
 

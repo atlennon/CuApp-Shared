@@ -1,12 +1,31 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node app.js"
-  },
-  "dependencies": {
-    "express": "3.4.8",
-    "jade": "*"
-  }
+	"name": "CUapp",
+	"version": "0.0.1",
+	"description": "An app to generate credit union applications",
+	"author": {
+		"name": "Aaron Lennon",
+		"email": "atlennon@gmail.com"
+	},
+	"website":{
+		"url": "cuapp.app.aws.af.cm"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/atlennon/CuApp-Shared.git"
+	},
+	"private": true,
+	"dependencies": {
+		"express": "3.0.6",
+		"stylus": "0.31.0",
+		"jade": "0.27.7",
+		"mongodb": "1.2.7",
+		"moment" : "1.7.2",
+		"emailjs": "0.3.3",
+		"html": "0.0.7",
+		"mongoskin":"1.3.20-alpha"
+	},
+	"engines": {
+		"node": "0.10.24",
+		"npm":  "1.3.21"
+	}
 }

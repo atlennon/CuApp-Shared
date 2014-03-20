@@ -1,11 +1,11 @@
-#deposit-form-container
-	form(method="post")#deposit-form.form-horizontal.well.span6
+#info-form-container
+	form(method="post")#deposit-form.form-vertical.well.span4
 		h1
-		p#sub1.subheading Enter Member Information
+		p#sub1.subheading
 		hr
 		fieldset
-			#deposit-amt-cg.control-group
-				label.control-label(for='deposit-amt-tf') Deposit Amount
+			#depositamt-cg.control-group
+				label.control-label(for='depositamt-tf') Deposit Amount
 				.controls
-					input#deposit-amt-tf.input-xlarge(type='number', name='deposit-amt', value= member.deposit-amt)
+					input#depositamt-tf.input-xlarge(type='number', name='depositamt', value= member.depositamt)
 			hr

@@ -19,7 +19,7 @@ module.exports = function(app) {
 			AM.autoLogin(req.cookies.user, req.cookies.pass, function(o){
 				if (o != null){
 				    req.session.user = o;
-					res.redirect('/basicinfo');
+					res.redirect('/memberinfo');
 				}	else{
 					res.render('login', { title: 'Hello - Please Login To Your Account' });
 				}
@@ -86,7 +86,7 @@ module.exports = function(app) {
 
 // Applicant info page //
 	
-	  app.get('/basicinfo', function(req, res) {
+	  app.get('/memberinfo', function(req, res) {
 	    if (req.session.user == null){
 	// if user is not logged-in redirect back to login page //
 	        res.redirect('/');
@@ -94,7 +94,7 @@ module.exports = function(app) {
 			if (o) currentMember = o; 
 			else currentMember = {};
 			});
-				res.render('basicinfo', {
+				res.render('memberinfo', {
 				title : 'Member Info',
 				states : ST,
 				udata : req.session.user,
@@ -103,7 +103,7 @@ module.exports = function(app) {
 		}
 	});
 	
-	app.post('/basicinfo', function(req, res){
+	app.post('/memberinfo', function(req, res){
 			if (req.param('user') != undefined) {
 				AM.saveMember({
 					creator		: req.param('user'),

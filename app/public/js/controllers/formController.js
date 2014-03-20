@@ -9,7 +9,7 @@ function FormController()
 	$('#btn-logout').click(function(){ that.attemptLogout(); });
 
 // confirm clearing the form //
-	$('#account-form-btn1').click(function(){$('.modal-confirm').modal('show')});
+	$('#info-form-btn1').click(function(){$('.modal-confirm').modal('show')});
 
 // handle clearing the form //
 	$('.modal-confirm .submit').click(function(){ that.clearForm(); });
@@ -35,7 +35,7 @@ function FormController()
 	{
 		var that = this;
 		$.ajax({
-			url: "/basicinfo",
+			url: "/memberinfo",
 			type: "POST",
 			data: {logout : true},
 			success: function(data){
