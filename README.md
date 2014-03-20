@@ -1,13 +1,14 @@
-#[Node-Login](http://node-login.braitsch.io)
+# cuapp-shared
 
-####A basic login & account management system built in Node.js with the following features :
+####A basic form app that can be used to collect information on a mobile device built in Node.js with the following features :
 
 * New User Account Creation
 * Secure Password Reset via Email
 * Ability to Update / Delete Account
 * Session Tracking for Logged-In Users
 * Local Cookie Storage for Returning Users
-* Blowfish-based Scheme Password Encryption
+* User Password Encryption
+* Form to collect information on new applicants
 
 ***
 
@@ -24,14 +25,14 @@
 
 ***
 
-A [Live Demo](http://node-login.braitsch.io) and [some thoughts about the app's architecture.](http://www.quietless.com/kitchen/building-a-login-system-in-node-js-and-mongodb/)
+A [Live Demo] cuapp.aws.af.cm
 
 ***
 
 ####Installation & Setup
 This assumes you already have node.js & npm installed.
 ```
-git clone git://github.com/braitsch/node-login.git node-login
+git clone hhttps://github.com/atlennon/CuApp-Shared.git cuapp
 cd node-login
 npm install -d
 node app
