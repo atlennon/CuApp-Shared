@@ -20,24 +20,27 @@ block content
 	#whitespace
 	include signature
 	#whitespace
+	#whitespace
+	
 		include modals/alert
 		include modals/confirm
 
 	div.navbar.navbar-fixed-bottom
 		div.navbar-inner
-			div.container-fluid
-					button#btn-info.btn.btn-primary
-						i.icon-lock.icon-white
-						| info
-					button#btn-deposit.btn.btn-primary
-						i.icon-lock.icon-white
-						| Deposit
-					button#btn-id.btn.btn-primary
-						i.icon-lock.icon-white
-						| ID
-					button#btn-signature.btn.btn-primary
-						i.icon-lock.icon-white
-						| Signature
+			div.container-fluid#bottom-nav
+					#button-container
+						button#btn-info.btn.btn-primary
+							i.icon-lock.icon-white
+							| info
+						button#btn-deposit.btn.btn-primary
+							i.icon-lock.icon-white
+							| Deposit
+						button#btn-id.btn.btn-primary
+							i.icon-lock.icon-white
+							| ID
+						button#btn-signature.btn.btn-primary
+							i.icon-lock.icon-white
+							| Signature
 block scripts
 	script(src='/vendor/jquery.min.js')
 	script(src='/vendor/jquery.form.js')

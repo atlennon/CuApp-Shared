@@ -9,7 +9,7 @@ function FormController()
 	$('#btn-signature').click(function(){$(window).scrollTo('#signature-scrollpoint')});
 
 //Clear signature
-$('#btn-delsig').click(function(){$('#Signature').jSignature("reset");});
+$('#btn-delsig').click(function(){$('#signature').jSignature('clear');});
 
 // bind event listeners to button clicks //
 	var that = this;
