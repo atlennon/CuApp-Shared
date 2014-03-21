@@ -50,7 +50,7 @@ $(document).ready(function(){
 		}
 	});
 	
-	
+	$("#signature").jSignature();
 
 // customize the info form //
 	

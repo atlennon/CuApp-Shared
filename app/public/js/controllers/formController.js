@@ -2,6 +2,15 @@
 function FormController()
 {
 
+// Scroll between forms on the screen
+	$('#btn-info').click(function(){$(window).scrollTo('#info-scrollpoint')});
+	$('#btn-deposit').click(function(){$(window).scrollTo('#deposit-scrollpoint')});
+	$('#btn-id').click(function(){$(window).scrollTo('#id-scrollpoint')});
+	$('#btn-signature').click(function(){$(window).scrollTo('#signature-scrollpoint')});
+
+//Clear signature
+$('#btn-delsig').click(function(){$('#Signature').jSignature("reset");});
+
 // bind event listeners to button clicks //
 	var that = this;
 
@@ -13,6 +22,7 @@ function FormController()
 
 // handle clearing the form //
 	$('.modal-confirm .submit').click(function(){ that.clearForm(); });
+
 
 	this.clearForm = function()
 	{

@@ -5,14 +5,12 @@ raiseText()
 	-webkit-text-shadow: -1px 1px 0 white
 
 body 
-    
-	margin  0
-	padding  0
+
 	height  100%
-	background rgb(242,249,254)
+	background rgb(17,137,223,1)
 	background -moz-radial-gradient(center, ellipse cover,  rgba(242,249,254,1) 0%, rgba(214,240,253,1) 100%) /* FF3.6+ */
 	background -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(242,249,254,1)), color-stop(100%,rgba(214,240,253,1))) /* Chrome,Safari4+ */
-	background -webkit-radial-gradient(center, ellipse cover,  rgba(242,249,254,1) 0%,rgba(214,240,253,1) 100%) /* Chrome10+,Safari5.1+ */
+	background -webkit-radial-gradient(center, ellipse cover,  rgba(17,137,223,1) 0%,rgba(214,240,253,1) 100%) /* Chrome10+,Safari5.1+ */
 	background -o-radial-gradient(center, ellipse cover,  rgba(242,249,254,1) 0%,rgba(214,240,253,1) 100%) /* Opera 12+ */
 	background -ms-radial-gradient(center, ellipse cover,  rgba(242,249,254,1) 0%,rgba(214,240,253,1) 100%) /* IE10+ */
 	background radial-gradient(center, ellipse cover,  rgba(242,249,254,1) 0%,rgba(214,240,253,1) 100%) /* W3C */
@@ -48,14 +46,6 @@ body
 	}
 }
 
-// disable vertical scrollbar //
-
-body
-{
-overflow-y:hidden;
-}
-
-
 // account form on signup & home page //
 
 #account-form-container
@@ -68,6 +58,7 @@ overflow-y:hidden;
 // Member info forms //
 	
 #info-form-container
+	overflow-y: hidden
 	width 340px
 	margin 40px auto
 #state-list
@@ -75,29 +66,40 @@ overflow-y:hidden;
 .modal-form-errors li
 	raiseText()
 	color #D8000C
-	
-#deposit-form-container
-	width 460px
-	margin 100px auto
-.modal-form-errors li
-	raiseText()
-	color #D8000C
-	
-#id-form-container
-	width 460px
-	margin 100px auto
-.modal-form-errors li
-	raiseText()
-	color #D8000C
-	
-#signature-form-container
-	width 460px
-	margin 100px auto
-.modal-form-errors li
-	raiseText()
-	color #D8000C
-	
 
+#deposit-form-container
+	width 340px
+	margin 40px auto
+.modal-form-errors li
+	raiseText()
+	color #D8000C
+	
+#id-container
+	width 200px
+	margin 40px auto
+	
+#signature-container
+	height 200px
+	width 340px
+	margin 40px auto
+	
+// add whitespace between forms //
+
+#whitespace{
+	padding-bottom: 200px
+}
+#info-scrollpoint{
+	padding-top: 5px
+}
+#deposit-scrollpoint{
+	padding-top: 30px
+}
+#id-scrollpoint{
+	padding-top: 5px
+}
+#signature-scrollpoint{
+	padding-top: 100px
+}
 // retrieve password window //
 
 .modal-single-input{
@@ -133,36 +135,10 @@ overflow-y:hidden;
 	margin -200px 0 0 -150px
 }
     
-// logged-in page //    
-    
-#btn-logout
-	width 100px
-	top 1px
-	right 20px
+// Buttons //    
 
-#btn-info
-  width 100px
-  top 1px
-  right 2px
-  position absolute
-
-#btn-deposit
-  width 400px
-  top 1px
-  right 110px
-  position absolute
-
-#btn-id
-  width 100px
-  top 1px
-  right 212px
-  position absolute
-
-#btn-sign
-  width 100px
-  top 1px
-  right 314px
-  position absolute 
+#btn-delsig
+	width 200px
 
 	 
 // support pages //
@@ -177,7 +153,6 @@ overflow-y:hidden;
 	clear both
 .well
 	margin-left 0
-	border 1px solid #CCC
 .form-horizontal .control-label
 	width 80px
 .form-horizontal .controls

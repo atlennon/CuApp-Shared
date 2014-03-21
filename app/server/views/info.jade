@@ -1,4 +1,4 @@
-
+block content
 // preset form values if we receive a user object //
 - user = typeof(udata) != 'undefined' ? udata : { }
 // preset form values if we receive a member object //
@@ -6,9 +6,9 @@
 // store the userId on the client side in a hidden input field //
 input(type='hidden', value= user._id)#userId
 input(type='hidden', value=user.user)#user-tf
-
+#info-scrollpoint
 #info-form-container
-	form(method="post")#info-form.form-vertical.well.span4
+	form(method="post")#info-form.form-vertical.well.span4.overflow-y: hidden
 		h1
 		p#sub1.subheading
 		hr
@@ -35,11 +35,11 @@ input(type='hidden', value=user.user)#user-tf
 					select#state-list(name='state')
 						each item in states
 							option(selected=item.name == member.state)= item.name
-//			hr
-//			.form-actions
+//		hr
+//		.form-actions
 //				button(type='button')#info-form-btn1.btn
 //				button(type='submit')#info-form-btn2.btn
-
+		
 // display form errors in a custom modal window //
 
 include modals/form-errors
