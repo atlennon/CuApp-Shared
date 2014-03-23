@@ -1,14 +1,14 @@
 block content
 // preset form values if we receive a user object //
 - user = typeof(udata) != 'undefined' ? udata : { }
-// preset form values if we receive a member object //
-- member = typeof(mdata) != 'undefined' ? mdata : { }
 // store the userId on the client side in a hidden input field //
 input(type='hidden', value= user._id)#userId
 input(type='hidden', value=user.user)#user-tf
+
+- member = typeof(mdata) != 'undefined' ? mdata : { }
 #info-scrollpoint
 #info-form-container
-	form(method="post")#info-form.form-vertical.well.span4.overflow-y: hidden
+	form(method="post")#info-form.form-vertical.well.span4
 		h1
 		p#sub1.subheading
 		hr
@@ -16,29 +16,36 @@ input(type='hidden', value=user.user)#user-tf
 			#fname-cg.control-group
 				label.control-label(for='fname-tf') First Name
 				.controls
-					input#name-tf.input-xlarge(type='text', name='fname', value= member.fname)
+					input#name-tf.input-large(type='text', name='fname', value= member.fname)
 			#mname-cg.control-group
 				label.control-label(for='mname-tf') Middle Name
 				.controls
-					input#name-tf.input-xlarge(type='text', name='mname', value= member.mname)
+					input#name-tf.input-large(type='text', name='mname', value= member.mname)
 			#lname-cg.control-group
 				label.control-label(for='lname-tf') Last Name
 				.controls	
-					input#name-tf.input-xlarge(type='text', name='lname', value= member.lname)
+					input#name-tf.input-large(type='text', name='lname', value= member.lname)
 			#email-cg.control-group
 				label.control-label(for='email-tf') Email
 				.controls
-					input#email-tf.input-xlarge(type='text', name='email', value= member.email)
-			#clist-cg.control-group
+					input#email-tf.input-large(type='text', name='email', value= member.email)
+			#ssn-cg.control-group
+				label.control-label(for='email-tf') Social Security Number
+				.controls
+					input#email-tf.input-large(type='text', name='ssn', value= member.ssn)
+			#slist-cg.control-group
 				label.control-label(for='state-list') State
 				.controls
 					select#state-list(name='state')
 						each item in states
 							option(selected=item.name == member.state)= item.name
-//		hr
-//		.form-actions
-//				button(type='button')#info-form-btn1.btn
-//				button(type='submit')#info-form-btn2.btn
+			#creator-cg.control-group
+				label.control-label(for='creator-tf') Creator
+				.controls
+					input#creator-tf.input-large(type='text', name='creator', value= member.creator)
+		hr
+		.form-actions
+				button(type='submit')#info-form-btn2.btn
 		
 // display form errors in a custom modal window //
 

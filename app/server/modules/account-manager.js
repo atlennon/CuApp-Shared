@@ -3,7 +3,6 @@ var crypto = require('crypto');
 var moment = require('moment');
 var mongo = require('mongoskin');
 var MongoClient = mongo.MongoClient;
-currentMember = new Object();
 
 //Determine DB url
 
@@ -131,40 +130,39 @@ exports.updateAccount = function(newData, callback)
 	});
 }
 
-
-exports.getMember = function(user, callback)
+exports.addMember = function(newData, callback)
 {
-	members.findOne({creator:user}, function(e, o) {
-		if (o != null){
-		//	callback(null,null); }	else {
-			callback(null, o);
-			}
-	});
-}
-
-exports.saveMember = function(newData, callback)
-{
-	members.findOne({lname:newData.lname}, function(e, o){
-		if (o){
-		o.fname 	= newData.fname;
-		o.mname 	= newData.mname;
-		o.lname 	= newData.lname;
-		o.email 	= newData.email;
-		o.state 	= newData.state;
-		o.user		= newData.creator;
-		// Update record //
-			members.save(o, {safe: true}, function(err) {
+	members.findOne({creator:newData.user}, function(e, m) {
+				if (m){
+					m.fname 	= newData.fname;
+					m.mname 	= newData.fname;
+					m.lname 	= newData.fname;
+					m.email 	= newData.email;
+					m.state 	= newData.state;
+					m.ssn 		= newData.ssn;
+					
+					accounts.save(o, {safe: true}, function(err) {
 					if (err) callback(err);
 					else callback(null, o);
-				});
+					});
 				}
-		else{
-				// append date stamp when record was created //
-				newData.date = moment().format('MMMM Do YYYY, h:mm:ss a');
-				// Insert new record //
-				members.insert(newData, {safe: true}, callback);
-			}
-});
+				else{
+					m = new Object;
+					m.fname 	= "";
+					m.mname 	= "";
+					m.lname 	= "";
+					m.email 	= "";
+					m.state 	= "";
+					m.ssn 		= "";
+					m.creator	= newData.user;
+					// append date stamp when record was created //
+						newData.date = moment().format('MMMM Do YYYY, h:mm:ss a');
+						members.insert(o, {safe: true}, function(err) {
+					if (err) callback(err);
+					else callback(null, o);
+					});
+				}
+			});
 }
 
 exports.updatePassword = function(email, newPass, callback)

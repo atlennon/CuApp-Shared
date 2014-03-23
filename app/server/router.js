@@ -84,50 +84,58 @@ module.exports = function(app) {
 	});
 	
 
-// Applicant info page //
-	
-	  app.get('/memberinfo', function(req, res) {
+// Member Forms //
+
+	app.get('/memberinfo', function(req, res) {
 	    if (req.session.user == null){
 	// if user is not logged-in redirect back to login page //
 	        res.redirect('/');
-	    }   else {AM.getMember(req.session.user.user,function(e, o){
-			if (o) currentMember = o; 
-			else currentMember = {};
+	    }   
+		else{
+			AM.addMember(req.session.user, function(e, m){
+				if (e){
+					res.render('404',{title: 'Database Error'});
+				}	
+				else {
+					res.render('memberinfo', {
+					title : 'Member Info',
+					states : ST,
+					udata : req.session.user,
+					mdata : m
+					});
+				}
 			});
-				res.render('memberinfo', {
-				title : 'Member Info',
-				states : ST,
-				udata : req.session.user,
-				mdata : currentMember
-				});
 		}
 	});
-	
+		
 	app.post('/memberinfo', function(req, res){
-			if (req.param('user') != undefined) {
-				AM.saveMember({
-					creator		: req.param('user'),
-					fname 		: req.param('fname'),
-					mname 		: req.param('lname'),
-					lname 		: req.param('lname'),
-					email 		: req.param('email'),
-					state	 	: req.param('state')
-				}, function(e, o){
-					if (e){
-						res.send('error-submitting-info', 400);
-					}	else{
-						req.session.user = o;
-						res.send('ok', 200);
-					}
-				});
-				}
-				else if (req.param('logout') == 'true'){
-				res.clearCookie('user');
-				res.clearCookie('pass');
-				req.session.destroy(function(e){ res.send('ok', 200); });
+		if (req.param('member') != undefined) {
+			AM.addMember({
+				fname 		: req.param('fname'),
+				mname 		: req.param('mname'),
+				lname 		: req.param('lname'),
+				email 		: req.param('email'),
+				state 		: req.param('state'),
+				ssn			: req.param('ssn'),
+				id	 		: req.param('email'),
+				depositamt 	: req.param('depositamt'),
+				depsittype	: req.param('deposittype'),
+				signature	: req.param('signature')
+			}, function(e, o){
+				if (e){
+					res.send(e, 400);
 				}	
+				else{
+					res.send('ok', 200);
+				}
+			});
+		}	
+		else if (req.param('logout') == 'true'){
+			res.clearCookie('user');
+			res.clearCookie('pass');
+			req.session.destroy(function(e){ res.send('ok', 200); });
+		}
 	});
-
 // creating new accounts //
 	
 	app.get('/signup', function(req, res) {

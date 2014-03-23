@@ -24,23 +24,6 @@ $('#btn-delsig').click(function(){$('#signature').jSignature('clear');});
 	$('.modal-confirm .submit').click(function(){ that.clearForm(); });
 
 
-	this.clearForm = function()
-	{
-		$('.modal-confirm').modal('hide');
-		var that = this;
-		$.ajax({
-			url: '/delete',
-			type: 'POST',
-			data: { id: $('#userId').val()},
-			success: function(data){
-	 			that.showLockedAlert('The form has been cleared');
-			},
-			error: function(jqXHR){
-				console.log(jqXHR.responseText+' :: '+jqXHR.statusText);
-			}
-		});
-	}
-
 	this.attemptLogout = function()
 	{
 		var that = this;

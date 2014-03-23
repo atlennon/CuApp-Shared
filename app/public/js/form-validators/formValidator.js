@@ -3,8 +3,8 @@ function FormValidator(){
 
 // build array maps of the form inputs & control groups //
 
-	this.formFields = [$('#fname-tf'), $('#mname-tf'), $('#lname-tf'), $('#email-tf'), $('#state-tf')];
-	this.controlGroups = [$('#fname-tf'), $('#mname-tf'), $('#lname-tf'), $('#email-tf'), $('#state-tf')];
+	this.formFields = [$('#fname-tf'), $('#mname-tf'), $('#lname-tf'), $('#email-tf'), $('#ssn-tf'),$('#state-tf'), $('#creatot-tf')];
+	this.controlGroups = [$('#fname-tf'), $('#mname-tf'), $('#lname-tf'), $('#email-tf'), $('#ssn-tf'),$('#state-tf'), $('#creatot-tf')];
 	
 // bind the form-error modal window to this controller to display any errors //
 	
@@ -42,19 +42,7 @@ function FormValidator(){
 	}
 
 }
-/*
-InfoValidator.prototype.showInvalidEmail = function()
-{
-	this.controlGroups[1].addClass('error');
-	this.showErrors(['That email address is already in use.']);
-}
 
-InfoValidator.prototype.showInvalidUserName = function()
-{
-	this.controlGroups[2].addClass('error');
-	this.showErrors(['That username is already in use.']);
-}
-*/
 FormValidator.prototype.validateForm = function()
 {
 	var e = [];
