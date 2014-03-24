@@ -130,20 +130,20 @@ exports.updateAccount = function(newData, callback)
 	});
 }
 
-exports.addMember = function(newData, callback)
+exports.addMember = function(memData, callback)
 {
-	members.findOne({creator:newData.user}, function(e, m) {
+	members.findOne({creator:memData.user}, function(e, m) {
 				if (m){
-					m.fname 	= newData.fname;
-					m.mname 	= newData.fname;
-					m.lname 	= newData.fname;
-					m.email 	= newData.email;
-					m.state 	= newData.state;
-					m.ssn 		= newData.ssn;
+					m.fname 	= memData.fname;
+					m.mname 	= memData.fname;
+					m.lname 	= memData.fname;
+					m.email 	= memData.email;
+					m.state 	= memData.state;
+					m.ssn 		= memData.ssn;
 					
-					accounts.save(o, {safe: true}, function(err) {
+					accounts.save(m, {safe: true}, function(err) {
 					if (err) callback(err);
-					else callback(null, o);
+					else callback(null, m);
 					});
 				}
 				else{
@@ -154,12 +154,12 @@ exports.addMember = function(newData, callback)
 					m.email 	= "";
 					m.state 	= "";
 					m.ssn 		= "";
-					m.creator	= newData.user;
+					m.creator	= memData.user;
 					// append date stamp when record was created //
-						newData.date = moment().format('MMMM Do YYYY, h:mm:ss a');
-						members.insert(o, {safe: true}, function(err) {
+						memData.date = moment().format('MMMM Do YYYY, h:mm:ss a');
+						members.insert(m, {safe: true}, function(err) {
 					if (err) callback(err);
-					else callback(null, o);
+					else callback(null, m);
 					});
 				}
 			});

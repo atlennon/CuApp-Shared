@@ -11,25 +11,20 @@ block content
 							button#btn-logout.btn.btn-primary
 								i.icon-lock.icon-white
 								| Sign Out
-
+	input(type='hidden', value='#info-form')#currentForm
 	include info
-	#whitespace
 	include deposit
-	#whitespace
 	include id
-	#whitespace
 	include signature
-	#whitespace
-	#whitespace
 	
-		include modals/alert
-		include modals/confirm
+	include modals/alert
+	include modals/confirm
 
 	div.navbar.navbar-fixed-bottom
 		div.navbar-inner
 			div.container-fluid#bottom-nav
-					#button-container
-						button#btn-info.btn.btn-primary.span2
+					div.btn-group.sm#button-container
+						button#btn-info.btn.btn-primary
 							i.icon-lock.icon-white
 							| info
 						button#btn-deposit.btn.btn-primary

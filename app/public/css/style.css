@@ -95,10 +95,10 @@ body {
   padding-top: 5px;
 }
 #deposit-scrollpoint {
-  padding-top: 30px;
+  padding-top: 100px;
 }
 #id-scrollpoint {
-  padding-top: 5px;
+  padding-top: 100px;
 }
 #signature-scrollpoint {
   padding-top: 100px;
@@ -140,7 +140,8 @@ body {
 #btn-delsig {
   width: 200px;
 }
-#bottom-nav {
+#button-container {
+  height: 2%;
   margin-left: 0px;
 }
 #print {

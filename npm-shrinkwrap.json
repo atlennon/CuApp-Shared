@@ -1,6 +1,6 @@
 {
   "name": "CUapp",
-  "version": "0.0.1",
+  "version": "0.0.8",
   "dependencies": {
     "express": {
       "version": "3.0.6",
@@ -88,6 +88,18 @@
         "debug": {
           "version": "0.7.4",
           "from": "debug@*"
+        }
+      }
+    },
+    "express-validator": {
+      "version": "2.1.1",
+      "from": "express-validator@",
+      "resolved": "https://registry.npmjs.org/express-validator/-/express-validator-2.1.1.tgz",
+      "dependencies": {
+        "validator": {
+          "version": "3.5.0",
+          "from": "validator@3.5.0",
+          "resolved": "https://registry.npmjs.org/validator/-/validator-3.5.0.tgz"
         }
       }
     },

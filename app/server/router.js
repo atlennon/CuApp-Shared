@@ -114,14 +114,15 @@ module.exports = function(app) {
 				fname 		: req.param('fname'),
 				mname 		: req.param('mname'),
 				lname 		: req.param('lname'),
-				email 		: req.param('email'),
+				email 		: req.param('mememail'),
 				state 		: req.param('state'),
 				ssn			: req.param('ssn'),
-				id	 		: req.param('email'),
+				id	 		: req.param('id'),
 				depositamt 	: req.param('depositamt'),
 				depsittype	: req.param('deposittype'),
-				signature	: req.param('signature')
-			}, function(e, o){
+				signature	: req.param('signature'),
+				user		: req.param('creator')
+			}, function(e, m){
 				if (e){
 					res.send(e, 400);
 				}	

@@ -1,5 +1,5 @@
 
-function FormValidator(){
+function InfoFormValidator(){
 
 // build array maps of the form inputs & control groups //
 
@@ -13,9 +13,9 @@ function FormValidator(){
 	
 	this.validateName = function(s)
 	{
-		return s.length > 1;
+		return s.length >= 3;
 	}
-/*	
+	
 	this.validatePassword = function(s)
 	{
 	// if user is logged in and hasn't changed their password, return ok
@@ -25,7 +25,7 @@ function FormValidator(){
 			return s.length >= 6;
 		}
 	}
-*/	
+	
 	this.validateEmail = function(e)
 	{
 		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -43,7 +43,12 @@ function FormValidator(){
 
 }
 
-FormValidator.prototype.validateForm = function()
+InfoFormValidator.prototype.showDatabaseError = function()
+{
+	this.showErrors(['Database Error']);
+}
+
+InfoFormValidator.prototype.validateInfoForm = function()
 {
 	var e = [];
 	for (var i=0; i < this.controlGroups.length; i++) this.controlGroups[i].removeClass('error');
