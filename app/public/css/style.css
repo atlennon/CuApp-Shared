@@ -1,18 +1,20 @@
+h1 {
+  font-family: "Brush Script MT", cursive;
+  text-align: center;
+  color: #fff;
+  color: #fff;
+  text-shadow: -1px -1px 0 #c0c0c0, 1px -1px 0 #c0c0c0, -1px 1px 0 #c0c0c0, 1px 1px 0 #c0c0c0;
+}
+h2 {
+  text-align: center;
+}
 body {
-  height: 50%;
-  background: #1189df;
-  background: -moz-radial-gradient(center, ellipse cover, #f2f9fe 0%, #d6f0fd 100%);
-/* FF3.6+ */
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #f2f9fe), color-stop(100%, #d6f0fd));
-/* Chrome,Safari4+ */
-  background: -webkit-radial-gradient(center, ellipse cover, #1189df 0%, #d6f0fd 100%);
-/* Chrome10+,Safari5.1+ */
-  background: -o-radial-gradient(center, ellipse cover, #f2f9fe 0%, #d6f0fd 100%);
-/* Opera 12+ */
-  background: -ms-radial-gradient(center, ellipse cover, #f2f9fe 0%, #d6f0fd 100%);
-/* IE10+ */
-  background: radial-gradient(center, ellipse cover, #f2f9fe 0%, #d6f0fd 100%);
-/* W3C */
+  height: 100%;
+  background-image: url("Feather.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 100%;
 }
 #login-container {
   margin: 100px auto;
@@ -53,10 +55,8 @@ body {
   -webkit-text-shadow: -1px 1px 0 #fff;
   color: #d8000c;
 }
-#member-form-container {
-  background: #f7900a;
-}
 #info-form-container {
+  overflow-y: hidden;
   width: 340px;
   margin: 40px auto;
 }
@@ -70,18 +70,7 @@ body {
   -webkit-text-shadow: -1px 1px 0 #fff;
   color: #d8000c;
 }
-#address-form-container {
-  width: 340px;
-  margin: 40px auto;
-}
-.modal-form-errors li {
-  color: #808080;
-  text-shadow: -1px 1px 0 #fff;
-  -moz-text-shadow: -1px 1px 0 #fff;
-  -webkit-text-shadow: -1px 1px 0 #fff;
-}
 #deposit-form-container {
-  text-align: center;
   width: 340px;
   margin: 40px auto;
 }
@@ -90,6 +79,7 @@ body {
   text-shadow: -1px 1px 0 #fff;
   -moz-text-shadow: -1px 1px 0 #fff;
   -webkit-text-shadow: -1px 1px 0 #fff;
+  color: #d8000c;
 }
 #id-container {
   width: 200px;
@@ -104,24 +94,16 @@ body {
   padding-bottom: 1000px;
 }
 #info-scrollpoint {
-  padding-top: 10px;
-  padding-bottom: 500px;
-}
-#address-scrollpoint {
-  padding-top: 10px;
-  padding-bottom: 600px;
+  padding-top: 5px;
 }
 #deposit-scrollpoint {
-  padding-top: 50px;
-  padding-bottom: 600px;
+  padding-top: 100px;
 }
 #id-scrollpoint {
   padding-top: 100px;
-  padding-bottom: 600px;
 }
 #signature-scrollpoint {
-  padding-top: 50px;
-  padding-bottom: 600px;
+  padding-top: 100px;
 }
 .modal-single-input {
   width: 452px;
