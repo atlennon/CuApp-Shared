@@ -5,11 +5,8 @@ block content
 	#login-container
 		form( method="post")#login-form.well.span4
 			h1 ApplyCU
-			p.subheading Returning User Log On
-			label Username
-			input(type="text", name="user", id='user-tf').span4.required
-			label Password
-			input(type="password", name="pass", id='pass-tf').span4.required
+			input(type="text", name="user", id='user-tf', placeholder="Username or Email").span4.required
+			input(type="password", name="pass", id='pass-tf', placeholder="Password").span4.required
 			button(type="submit")#btn-login.btn.btn-primary
 				i.icon-lock.icon-white
 				| Sign in

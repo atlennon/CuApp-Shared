@@ -1,4 +1,3 @@
-
 // preset form values if we receive a userdata object //
 - user = typeof(udata) != 'undefined' ? udata : { }
 // store the userId on the client side in a hidden input field //
@@ -7,7 +6,6 @@ input(type='hidden', value= user._id)#userId
 #account-form-container
 	form( method="post")#account-form.form-vertical.well.span4
 		h1
-		p#sub1.subheading Please tell us a little about yourself.
 		hr
 		fieldset
 			#name-cg.control-group
@@ -19,7 +17,6 @@ input(type='hidden', value= user._id)#userId
 				.controls
 					input#email-tf.input-xlarge(type='text', name='email', value= user.email)
 			hr
-			p#sub2.subheading
 			#user-cg.control-group
 				label.control-label(for='user-tf') Username
 				.controls
