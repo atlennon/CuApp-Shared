@@ -1,5 +1,5 @@
 body {
-  height: 100%;
+  height: 50%;
   background: #1189df;
   background: -moz-radial-gradient(center, ellipse cover, #f2f9fe 0%, #d6f0fd 100%);
 /* FF3.6+ */
@@ -53,8 +53,10 @@ body {
   -webkit-text-shadow: -1px 1px 0 #fff;
   color: #d8000c;
 }
+#member-form-container {
+  background: #f7900a;
+}
 #info-form-container {
-  overflow-y: hidden;
   width: 340px;
   margin: 40px auto;
 }
@@ -68,7 +70,7 @@ body {
   -webkit-text-shadow: -1px 1px 0 #fff;
   color: #d8000c;
 }
-#deposit-form-container {
+#address-form-container {
   width: 340px;
   margin: 40px auto;
 }
@@ -77,7 +79,17 @@ body {
   text-shadow: -1px 1px 0 #fff;
   -moz-text-shadow: -1px 1px 0 #fff;
   -webkit-text-shadow: -1px 1px 0 #fff;
-  color: #d8000c;
+}
+#deposit-form-container {
+  text-align: center;
+  width: 340px;
+  margin: 40px auto;
+}
+.modal-form-errors li {
+  color: #808080;
+  text-shadow: -1px 1px 0 #fff;
+  -moz-text-shadow: -1px 1px 0 #fff;
+  -webkit-text-shadow: -1px 1px 0 #fff;
 }
 #id-container {
   width: 200px;
@@ -92,16 +104,24 @@ body {
   padding-bottom: 1000px;
 }
 #info-scrollpoint {
-  padding-top: 5px;
+  padding-top: 10px;
+  padding-bottom: 500px;
+}
+#address-scrollpoint {
+  padding-top: 10px;
+  padding-bottom: 600px;
 }
 #deposit-scrollpoint {
-  padding-top: 100px;
+  padding-top: 50px;
+  padding-bottom: 600px;
 }
 #id-scrollpoint {
   padding-top: 100px;
+  padding-bottom: 600px;
 }
 #signature-scrollpoint {
-  padding-top: 100px;
+  padding-top: 50px;
+  padding-bottom: 600px;
 }
 .modal-single-input {
   width: 452px;

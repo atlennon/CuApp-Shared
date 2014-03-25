@@ -1,11 +1,12 @@
 #deposit-scrollpoint
-	#info-form-container
-		form(method="post")#deposit-form.form-vertical.well.span4
+	#deposit-form-container.well
 			h1
-			p#sub1.subheading
-			hr
 			fieldset
+				#deposittype-cg.control-group
+					label.control-label(for='deposittype-tf') Deposit Type
+					.controls
+						input#deposittype-tf.input-medium(type='input', name='deposittype', value= member.deposittype)
 				#depositamt-cg.control-group
 					label.control-label(for='depositamt-tf') Deposit Amount
 					.controls
-						input#depositamt-tf.input-xlarge(type='number', name='depositamt', value= member.depositamt)
+						input#depositamt-tf.input-medium(type='number', name='depositamt', value= member.depositamt)

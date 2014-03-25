@@ -6,56 +6,106 @@ var currentForm;
 
 // Scroll between forms on the screen
 	$('#btn-info').click(function(){
-//	$(currentForm).trigger('submit');
-	$('#info-scrollpoint').show(); 
+	$('#btn-info').addClass('btn-warning');
+	$('#btn-address').removeClass('btn-warning');
+	$('#btn-deposit').removeClass('btn-warning');
+	$('#btn-id').removeClass('btn-warning');
+	$('#btn-signature').removeClass('btn-warning');
+	$('#btn-presubmit').removeClass('btn-warning');
+	$('#info-scrollpoint').show();
+	$('#address-scrollpoint').hide(); 	
 	$('#deposit-scrollpoint').hide(); 
 	$('#id-scrollpoint').hide();
 	$('#signature-scrollpoint').hide();
+	$('#submit-scrollpoint').hide()
 	$(window).scrollTo('#info-scrollpoint');
 	$('#currentForm').value = '#info-form'; 
 	});
 	
-	$('#btn-deposit').click(function(){
-	$('#deposit-scrollpoint').show(); 
+	$('#btn-address').click(function(){
+	$('#btn-address').addClass('btn-warning');
+	$('#btn-info').removeClass('btn-warning');
+	$('#btn-deposit').removeClass('btn-warning');
+	$('#btn-id').removeClass('btn-warning');
+	$('#btn-signature').removeClass('btn-warning');
+	$('#btn-presubmit').removeClass('btn-warning');
+	$('#address-scrollpoint').show(); 
 	$('#info-scrollpoint').hide(); 
+	$('#deposit-scrollpoint').hide();
 	$('#id-scrollpoint').hide();
 	$('#signature-scrollpoint').hide();
+	$('#submit-scrollpoint').hide();
+	$(window).scrollTo('#address-scrollpoint');
+	$('#currentForm').value = '#info-form'; 
+	});
+	
+	$('#btn-deposit').click(function(){
+	$('#btn-deposit').addClass('btn-warning');
+	$('#btn-info').removeClass('btn-warning');
+	$('#btn-address').removeClass('btn-warning');
+	$('#btn-id').removeClass('btn-warning');
+	$('#btn-signature').removeClass('btn-warning');
+	$('#btn-presubmit').removeClass('btn-warning');
+	$('#deposit-scrollpoint').show(); 
+	$('#info-scrollpoint').hide(); 
+	$('#address-scrollpoint').hide(); 	
+	$('#id-scrollpoint').hide();
+	$('#signature-scrollpoint').hide();
+	$('#submit-scrollpoint').hide();
 	$(window).scrollTo('#deposit-scrollpoint');
 	$('#currentForm').value = '#deposit-form'; 
 	});
 	
 	$('#btn-id').click(function(){
+	$('#btn-id').addClass('btn-warning');
+	$('#btn-info').removeClass('btn-warning');
+	$('#btn-address').removeClass('btn-warning');
+	$('#btn-deposit').removeClass('btn-warning');
+	$('#btn-signature').removeClass('btn-warning');
+	$('#btn-presubmit').removeClass('btn-warning');
 	$('#id-scrollpoint').show(); 
 	$('#info-scrollpoint').hide(); 
+	$('#address-scrollpoint').hide(); 	
 	$('#deposit-scrollpoint').hide();
 	$('#signature-scrollpoint').hide();
+	$('#submit-scrollpoint').hide();
 	$(window).scrollTo('#id-scrollpoint');
 	$('#currentForm').value = '#id-form'; 
 	});
 	
 	$('#btn-signature').click(function(){
+	$('#btn-signature').addClass('btn-warning');
+	$('#btn-info').removeClass('btn-warning');
+	$('#btn-address').removeClass('btn-warning');
+	$('#btn-deposit').removeClass('btn-warning');
+	$('#btn-id').removeClass('btn-warning');
+	$('#btn-presubmit').removeClass('btn-warning');
 	$('#signature-scrollpoint').show(); 
 	$('#info-scrollpoint').hide(); 
+	$('#address-scrollpoint').hide(); 	
 	$('#deposit-scrollpoint').hide();
 	$('#id-scrollpoint').hide();
+	$('#submit-scrollpoint').hide();
 	$(window).scrollTo('#signature-scrollpoint');
 	$('#currentForm').value = '#signature-form'; 
 	});
-
-    
 	
-	function show() { 
-        if ($('#signature-scrollpoint').style.display=='none') { 
-            document.getElementById('benefits').style.display='block'; 
-        } 
-        return false;
-    } 
-    function hide() { 
-        if($('#signature-scrollpoint').style.display=='block') { 
-            $('#signature-scrollpoint').style.display='none'; 
-        } 
-        return false;
-    } 
+	$('#btn-presubmit').click(function(){
+	$('#btn-presubmit').addClass('btn-warning');
+	$('#btn-info').removeClass('btn-warning');
+	$('#btn-address').removeClass('btn-warning');
+	$('#btn-deposit').removeClass('btn-warning');
+	$('#btn-id').removeClass('btn-warning');
+	$('#btn-signature').removeClass('btn-warning');
+	$('#submit-scrollpoint').show();
+	$('#info-scrollpoint').hide(); 
+	$('#address-scrollpoint').hide(); 	
+	$('#deposit-scrollpoint').hide();
+	$('#id-scrollpoint').hide();
+	$('#signature-scrollpoint').hide();
+	$(window).scrollTo('#submit-scrollpoint');
+	});
+	
 	
 	//Clear signature
 $('#btn-delsig').click(function(){$('#signature').jSignature('clear');});
@@ -70,7 +120,7 @@ $('#btn-delsig').click(function(){$('#signature').jSignature('clear');});
 //	$('#info-form-btn1').click(function(){$('.modal-confirm').modal('show')});
 
 // handle submitting the form //
-	$('#info-form-btn1').click(function(){that.submitForm(); });
+	$('#member-form-btn1').click(function(){that.submitForm(); });
 /*
 	$(currentForm).submit(function(e) {
     e.preventDefault(); // Prevents the page from refreshing

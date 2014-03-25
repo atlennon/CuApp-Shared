@@ -3,6 +3,7 @@ var CT = require('./modules/country-list');
 var ST = require('./modules/state-list');
 var AM = require('./modules/account-manager');
 var EM = require('./modules/email-dispatcher');
+var fs = require('fs');
 
 module.exports = function(app) {
 
@@ -94,7 +95,7 @@ module.exports = function(app) {
 		else{
 			AM.addMember(req.session.user, function(e, m){
 				if (e){
-					res.render('404',{title: 'Database Error'});
+					res.render('404',{title: 'Databease Error'});
 				}	
 				else {
 					res.render('memberinfo', {
@@ -109,12 +110,17 @@ module.exports = function(app) {
 	});
 		
 	app.post('/memberinfo', function(req, res){
-		if (req.param('member') != undefined) {
+		if (req.param('logout') == 'true'){
+			res.clearCookie('user');
+			res.clearCookie('pass');
+			req.session.destroy(function(e){ res.send('ok', 200); });
+		}
+		else {
 			AM.addMember({
 				fname 		: req.param('fname'),
 				mname 		: req.param('mname'),
 				lname 		: req.param('lname'),
-				email 		: req.param('mememail'),
+				email 		: req.param('email'),
 				state 		: req.param('state'),
 				ssn			: req.param('ssn'),
 				id	 		: req.param('id'),
@@ -131,12 +137,37 @@ module.exports = function(app) {
 				}
 			});
 		}	
-		else if (req.param('logout') == 'true'){
-			res.clearCookie('user');
-			res.clearCookie('pass');
-			req.session.destroy(function(e){ res.send('ok', 200); });
+		
+	});
+	
+	
+	app.post('/api/uploadContent', function (req, res) {
+			
+		fs.readFile(req.files.identification.path, function (err, data) {
+
+		var imageName = req.files.identification.name
+
+		/// If there's an error
+		if(!imageName){
+
+			console.log("There was an error")
+			res.redirect("/memberinfo");
+			res.end();
+
+		} else {
+
+		  var newPath = __dirname + "/uploads/" + imageName;
+
+		  /// write file to uploads folder
+		  fs.writeFileSync(newPath, data, function (err, newPath) {
+			if (err) throw err;
+		  	/// let's see it
+		  	res.redirect("/uploads/fullsize/" + imageName);
+		  });
 		}
 	});
+});
+
 // creating new accounts //
 	
 	app.get('/signup', function(req, res) {

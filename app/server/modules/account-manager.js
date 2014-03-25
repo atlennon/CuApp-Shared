@@ -130,24 +130,29 @@ exports.updateAccount = function(newData, callback)
 	});
 }
 
+
+
+
+
 exports.addMember = function(memData, callback)
 {
 	members.findOne({creator:memData.user}, function(e, m) {
 				if (m){
+					m = new Object();
 					m.fname 	= memData.fname;
-					m.mname 	= memData.fname;
-					m.lname 	= memData.fname;
+					m.mname 	= memData.mname;
+					m.lname 	= memData.lname;
 					m.email 	= memData.email;
 					m.state 	= memData.state;
 					m.ssn 		= memData.ssn;
 					
-					accounts.save(m, {safe: true}, function(err) {
+					members.save(m, {safe: true}, function(err) {
 					if (err) callback(err);
 					else callback(null, m);
 					});
 				}
 				else{
-					m = new Object;
+					m = new Object();
 					m.fname 	= "";
 					m.mname 	= "";
 					m.lname 	= "";

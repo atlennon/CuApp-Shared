@@ -6,10 +6,10 @@ block content
 		form( method="post")#login-form.well.span4
 			h1 ApplyCU
 			p.subheading Returning User Log On
-			label Username or Email
-			input(type="text", name="user", id='user-tf', value="Username or Email", onFocus="inputFocus(this)", onBlur="inputBlur(this)").span4.required
+			label Username
+			input(type="text", name="user", id='user-tf').span4.required
 			label Password
-			input(type="password", name="pass", id='pass-tf', value="Password", onFocus="inputFocus(this)", onBlur="inputBlur(this)").span4.required
+			input(type="password", name="pass", id='pass-tf').span4.required
 			button(type="submit")#btn-login.btn.btn-primary
 				i.icon-lock.icon-white
 				| Sign in

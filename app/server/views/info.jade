@@ -1,50 +1,27 @@
-block content
-// preset form values if we receive a user object //
-- user = typeof(udata) != 'undefined' ? udata : { }
-// store the userId on the client side in a hidden input field //
-input(type='hidden', value= user._id)#userId
-input(type='hidden', value=user.user)#username
-
-- member = typeof(mdata) != 'undefined' ? mdata : { }
 #info-scrollpoint
-	#info-form-container
-		form(method="post")#info-form.form-vertical.well.span4
+	#info-form-container.well
 			h1
-			p#sub1.subheading
-			hr
 			fieldset
 				#fname-cg.control-group
 					label.control-label(for='fname-tf') First Name
 					.controls
-						input#fname-tf.input-xlarge(type='text', name='fname', value= member.fname)
+						input#name-tf.input-xlarge(type='text', name='fname', value= member.fname).span4.required
 				#mname-cg.control-group
 					label.control-label(for='mname-tf') Middle Name
 					.controls
-						input#mname-tf.input-xlarge(type='text', name='mname', value= member.mname)
+						input#mname-tf.input-xlarge(type='text', name='mname', value= member.mname).span4
 				#lname-cg.control-group
 					label.control-label(for='lname-tf') Last Name
 					.controls	
-						input#lname-tf.input-xlarge(type='text', name='lname', value= member.lname)
+						input#lname-tf.input-xlarge(type='text', name='lname', value= member.lname).span4.required
 				#email-cg.control-group
 					label.control-label(for='email-tf') Email
 					.controls
-						input#email-tf.input-xlarge(type='text', name='email', value= member.email)
-				#ssn-cg.control-group
-					label.control-label(for='email-tf') SSN#
-					.controls
-						input#ssn-tf.input-xlarge(type='text', name='ssn', value= member.ssn)
-				#slist-cg.control-group
-					label.control-label(for='state-list') State
-					.controls
-						select#state-list(name='state')
-							each item in states
-								option(selected=item.name == member.state)= item.name
+						input#email-tf.input-xlarge(type='text', name='email', value= member.email).span4.required
 				#creator-cg.control-group
-					label.control-label(for='creator-tf') Creator
+					label.control-label(for='creator-tf')
 					.controls
-						input#creator-tf.input-xlarge(type='text', name='creator', value= member.creator)
-				.form-actions
-					button(type='submit')#info-form-btn1
+						input#creator-tf.input-xlarge(type='hidden', name='creator', value= member.creator)
 			
 	// display form errors in a custom modal window //
 

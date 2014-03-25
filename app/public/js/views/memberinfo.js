@@ -5,7 +5,7 @@ $(document).ready(function(){
 	var fv = new InfoFormValidator();	
 	
 	
-	$('#info-form').ajaxForm({
+	$('#member-form').ajaxForm({
 /*		beforeSubmit : function(formData, jqForm, options){
 			if (fv.validateInfoForm() == false){
 				return false;
@@ -26,53 +26,33 @@ $(document).ready(function(){
 	//$('#fname-tf').focus();
 	$('#github-banner').css('top', '40px');
 	
-	$('#deposit-form').ajaxForm({
-		beforeSubmit : function(formData, jqForm, options){
-			//if (fv.validateForm() == false){
-			//	return false;
-			//} 	else{
-			// push the hidden username field onto the form data array //
-			//	formData.push({name:'user', value:$('#user-tf').val()})
-				return true;
-		//	}
-		},
-		success	: function(responseText, status, xhr, $form){
-			if (status == 'success') fc.onUpdateSuccess();
-		},
-		error : function(e){
-			if (e.responseText == 'email-taken'){
-			    fv.showInvalidEmail();
-			}	else if (e.responseText == 'username-taken'){
-			    fv.showInvalidUserName();
-			}
-		}
-	});
 	
 	//Add signature Function
 	
 	$("#signature").jSignature();
 	
-// customize the info form //
+// customize the member form //
 	
-	$('#info-form h1').text('Personal Information');
-	$('#info-form #sub1').text('Enter the personal information for the new member');
+	
+	$('#member-form-container h1').text('Basic Info');
+	$('#address-form-container h1').text('Address Info');
+	$('#deposit-form-container h1').text('Deposit Info');
+	$('#id-container h1').text('Identification');
+	$('#member-form #sub1').text('Enter the information for the new member');
 	$('#user-tf').attr('disabled', 'disabled');
-	$('#info-form-btn1').html('Submit');
-	$('#info-form-btn1').addClass('btn-success');
-	
-// customize the deposit form //
-	
-	$('#deposit-form h1').text('Deposit Information');
-	$('#deposit-form #sub1').text('Enter the deposit information for the new member');
-	$('#user-tf').attr('disabled', 'disabled');
-	$('#deposit-form-btn1').html('Submit');
-	$('#deposit-form-btn1').addClass('btn-success');
+	$('#member-form-btn1').html('Submit');
+	$('#member-form-btn1').addClass('btn-success');
+	$('#member-form-btn2').html('Cancel');
+	$('#member-form-btn2').addClass('btn-danger');
 
 // Hide all components except for info form on load	
 
 	$('#deposit-scrollpoint').hide(); 
 	$('#id-scrollpoint').hide();
 	$('#signature-scrollpoint').hide();
+	$('#address-scrollpoint').hide();
+	$('#submit-scrollpoint').hide();
 	$(window).scrollTo('#info-scrollpoint');
+	
 	
 })

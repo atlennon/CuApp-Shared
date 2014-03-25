@@ -1,0 +1,27 @@
+block content
+#address-scrollpoint
+	#address-form-container.well
+			h1
+			fieldset
+				#addr1-cg.control-group
+					label.control-label(for='addr1-tf') Street Address
+					.controls
+						input#name-tf.input-xlarge(type='text', name='addr1', value= member.addr1)
+				#city-cg.control-group
+					label.control-label(for='city-tf') City
+					.controls
+						input#city-tf.input-xlarge(type='text', name='city', value= member.city)
+				#slist-cg.control-group
+					label.control-label(for='state-list') State
+					.controls
+						select#state-list(name='state')
+							each item in states
+								option(selected=item.name == member.state)= item.name
+				#zip-cg.control-group
+					label.control-label(for='zip-tf') Zip
+					.controls	
+						input#zip-tf.input-small(type='text', name='zip', value= member.zip)
+			
+	// display form errors in a custom modal window //
+
+	include modals/form-errors
