@@ -3,17 +3,23 @@ raiseText()
 	text-shadow: -1px 1px 0 white
 	-moz-text-shadow: -1px 1px 0 white
 	-webkit-text-shadow: -1px 1px 0 white
+	//font-family:"Times New Roman", Times, serif//
 
+h1 { font-family: "Brush Script MT", cursive; text-align: center; color:white;  color: white;
+    text-shadow:
+    -1px -1px 0 #C0C0C0,
+    1px -1px 0 #C0C0C0,
+    -1px 1px 0 #C0C0C0,
+    1px 1px 0 #C0C0C0;}
+h2 { text-align: center }
 body 
 
-	height  50%
-	background rgb(17,137,223,1)
-	background -moz-radial-gradient(center, ellipse cover,  rgba(242,249,254,1) 0%, rgba(214,240,253,1) 100%) /* FF3.6+ */
-	background -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(242,249,254,1)), color-stop(100%,rgba(214,240,253,1))) /* Chrome,Safari4+ */
-	background -webkit-radial-gradient(center, ellipse cover,  rgba(17,137,223,1) 0%,rgba(214,240,253,1) 100%) /* Chrome10+,Safari5.1+ */
-	background -o-radial-gradient(center, ellipse cover,  rgba(242,249,254,1) 0%,rgba(214,240,253,1) 100%) /* Opera 12+ */
-	background -ms-radial-gradient(center, ellipse cover,  rgba(242,249,254,1) 0%,rgba(214,240,253,1) 100%) /* IE10+ */
-	background radial-gradient(center, ellipse cover,  rgba(242,249,254,1) 0%,rgba(214,240,253,1) 100%) /* W3C */
+	height  100%
+	background-image:url("Feather.jpg");
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	background-position:center; 
+	background-size: 100%;
 	
 // login form //
     
@@ -55,29 +61,37 @@ body
 	raiseText()
 
 // Member info forms //
+<<<<<<< HEAD
 
 #member-form
+=======
+>>>>>>> e64f4e643f3418cdf4536c422d4cc4550b26a93c
 	
 #info-form-container
+	overflow-y: hidden
 	width 340px
 	margin 40px auto
 #state-list
 	width 280px
 .modal-form-errors li
 	raiseText()
+<<<<<<< HEAD
 	
 #address-form-container
 	width 340px
 	margin 40px auto
 .modal-form-errors li
 	raiseText()
+=======
+	color #D8000C
+>>>>>>> e64f4e643f3418cdf4536c422d4cc4550b26a93c
 
 #deposit-form-container
-	text-align center
 	width 340px
 	margin 40px auto
 .modal-form-errors li
 	raiseText()
+	color #D8000C
 	
 #id-container
 	width 200px
@@ -94,6 +108,7 @@ body
 	padding-bottom: 1000px
 }
 #info-scrollpoint{
+<<<<<<< HEAD
 	padding-top: 0px
 	padding-bottom: 0px
 }
@@ -117,8 +132,19 @@ body
 #review-scrollpoint{
 	padding-top: 0 px
 	padding-bottom: 600px
+=======
+	padding-top: 5px
 }
-
+#deposit-scrollpoint{
+	padding-top: 100px
+}
+#id-scrollpoint{
+	padding-top: 100px
+}
+#signature-scrollpoint{
+	padding-top: 100px
+>>>>>>> e64f4e643f3418cdf4536c422d4cc4550b26a93c
+}
 // retrieve password window //
 
 .modal-single-input{
