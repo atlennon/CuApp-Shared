@@ -2,6 +2,8 @@
 var express = require('express');
 var http = require('http');
 var app = express();
+var fs = require('fs');
+var PDFDocument = require('pdfkit');
 var expressValidator = require("express-validator");
 var port = (process.env.VMC_APP_PORT || 80);
 var host = (process.env.VCAP_APP_HOST || 'localhost');

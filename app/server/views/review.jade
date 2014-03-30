@@ -1,0 +1,28 @@
+block content
+	
+// preset form values if we receive a user object //
+- user = typeof(udata)
+// store the userId on the client side in a hidden input field //
+
+input(type='hidden', value= user._id)#userId
+input(type='hidden', value= user.user)#user
+- member = typeof(mdata) != 'undefined' ? mdata : { }
+	
+	form(method="POST", action="/memberinfo", enctype="multipart/form-data")#member-form
+		include info
+		include address
+		include deposit
+		include id
+		include signature
+		
+#review-scrollpoint
+	#info-form-container.well
+		.form-actions
+			Are you sure you want to submit the form?
+			br
+			br
+			button(type='submit')#member-form-btn1.btn
+			
+			
+// display form errors in a custom modal window //
+include modals/form-errors

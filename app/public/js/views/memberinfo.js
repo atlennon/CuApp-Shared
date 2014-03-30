@@ -2,25 +2,51 @@
 $(document).ready(function(){
 
 	var fc = new FormController();
-	var fv = new InfoFormValidator();	
-	
+	var fv = new InfoFormValidator();
+/*	
 	
 	$('#member-form').ajaxForm({
-/*		beforeSubmit : function(formData, jqForm, options){
+		beforeSubmit : function(formData, jqForm, options){
 			if (fv.validateInfoForm() == false){
 				return false;
 			} 	else{
 			// push the hidden username field onto the form data array //
-				formData.push({creator:'user', value:$('#username').val()})
+				formData.push({creator:'user', value:$('#user').val()})
 				return true;
 			}
 		},
-*/		success	: function(responseText, status, xhr, $form){
+	success	: function(responseText, status, xhr, $form){
 			if (status == 'success') fc.onUpdateSuccess();
 		},
 		error : function(e){
 			    fv.showDatabaseError();
 			}	
+	});
+
+*/
+	//Program a custom submit function for the form
+	$("#member-form").bind('submit',function(event){
+ 
+	//disable the default form submission
+	event.preventDefault();
+ 
+	//grab all form data  
+	var formData = new FormData($(this)[0]);
+ 
+	  $.ajax({
+		url: '/memberinfo',
+		type: 'POST',
+		data: formData,
+		async: false,
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function (returndata) {
+		  alert(returndata);
+		}
+	  });
+	 
+	  return false;
 	});
 	
 	//$('#fname-tf').focus();
@@ -34,7 +60,7 @@ $(document).ready(function(){
 // customize the member form //
 	
 	
-	$('#member-form-container h1').text('Basic Info');
+	$('#info-form-container h1').text('Basic Info');
 	$('#address-form-container h1').text('Address Info');
 	$('#deposit-form-container h1').text('Deposit Info');
 	$('#id-container h1').text('Identification');
@@ -51,8 +77,7 @@ $(document).ready(function(){
 	$('#id-scrollpoint').hide();
 	$('#signature-scrollpoint').hide();
 	$('#address-scrollpoint').hide();
-	$('#submit-scrollpoint').hide();
-	$(window).scrollTo('#info-scrollpoint');
-	
-	
+	$('#review-scrollpoint').hide();
+	$('#btn-info').addClass('btn-warning');
+	$(window).scrollTo('#info-scrollpoint');	
 })

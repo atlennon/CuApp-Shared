@@ -138,13 +138,18 @@ exports.addMember = function(memData, callback)
 {
 	members.findOne({creator:memData.user}, function(e, m) {
 				if (m){
-					m = new Object();
 					m.fname 	= memData.fname;
 					m.mname 	= memData.mname;
 					m.lname 	= memData.lname;
 					m.email 	= memData.email;
 					m.state 	= memData.state;
 					m.ssn 		= memData.ssn;
+					m.addr1		= memData.addr1;
+					m.city		= memData.city;
+					m.state		= memData.state;
+					m.zip		= memData.zip;
+					m.deposittype = memData.depositType;
+					m.depositamt = memData.depositAmt;			
 					
 					members.save(m, {safe: true}, function(err) {
 					if (err) callback(err);
@@ -153,12 +158,6 @@ exports.addMember = function(memData, callback)
 				}
 				else{
 					m = new Object();
-					m.fname 	= "";
-					m.mname 	= "";
-					m.lname 	= "";
-					m.email 	= "";
-					m.state 	= "";
-					m.ssn 		= "";
 					m.creator	= memData.user;
 					// append date stamp when record was created //
 						memData.date = moment().format('MMMM Do YYYY, h:mm:ss a');

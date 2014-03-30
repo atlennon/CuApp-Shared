@@ -5,23 +5,23 @@
 				#fname-cg.control-group
 					label.control-label(for='fname-tf') First Name
 					.controls
-						input#name-tf.input-xlarge(type='text', name='fname', value= member.fname).span4.required
+						input#fname-tf.input-xlarge(type='text', name='fname', value= member.fname).required
 				#mname-cg.control-group
 					label.control-label(for='mname-tf') Middle Name
 					.controls
-						input#mname-tf.input-xlarge(type='text', name='mname', value= member.mname).span4
+						input#mname-tf.input-xlarge(type='text', name='mname', value= member.mname)
 				#lname-cg.control-group
 					label.control-label(for='lname-tf') Last Name
 					.controls	
-						input#lname-tf.input-xlarge(type='text', name='lname', value= member.lname).span4.required
+						input#lname-tf.input-xlarge(type='text', name='lname', value= member.lname).required
 				#email-cg.control-group
 					label.control-label(for='email-tf') Email
 					.controls
-						input#email-tf.input-xlarge(type='text', name='email', value= member.email).span4.required
+						input#email-tf.input-xlarge(type='text', name='email', value= member.email).required
 				#creator-cg.control-group
 					label.control-label(for='creator-tf')
 					.controls
-						input#creator-tf.input-xlarge(type='hidden', name='creator', value= member.creator)
+						input#creator-tf.input-xlarge(type='hidden', name='creator', value= user.user)
 			
 	// display form errors in a custom modal window //
 

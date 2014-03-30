@@ -1,12 +1,10 @@
 #id-scrollpoint
-	block content
-
-		//- video(id="video", width="300", height="400", autoplay)
-		//- canvas(id="canvas", width="300",height="400")
-		//- button(id="snap") SNAP
-		#id-container.well
-				input(type="file", name="identification", id="identification", accept="image/*;capture=camera").input
-				#ssn-cg.control-group
-						label.control-label(for='ssn-tf') SSN#
-						.controls
-							input#ssn-tf.input-medium(type='text', name='ssn', value= member.ssn)
+	//- video(id="video", width="300", height="400", autoplay)
+	//- canvas(id="canvas", width="300",height="400")
+	//- button(id="snap") SNAP
+	#id-container.well
+			input(type="file", name="identification", id="identification", accept="image/*;capture=camera").input
+			#ssn-cg.control-group
+					label.control-label(for='ssn-tf') SSN#
+					.controls
+						input#ssn-tf.input-medium(type='text', name='ssn', value= member.ssn)

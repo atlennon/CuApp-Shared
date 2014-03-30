@@ -23,26 +23,9 @@ block content
 								i.icon-lock.icon-white
 								| Sign Out
 			
-			input(type='hidden', value='#info-form')#currentForm
-			// preset form values if we receive a user object //
-			- user = typeof(udata) != 'undefined' ? udata : { }
-			// store the userId on the client side in a hidden input field //
-			
-			input(type='hidden', value= user._id)#userId
-			input(type='hidden', value=user.user)#username
-			- member = typeof(mdata) != 'undefined' ? mdata : { }
-		
-		#member-form-container
-			form(method="POST", action="/memberinfo", enctype="multipart/form-data")#member-form
-				include info
-				include address
-				include deposit
-				include id
-				include signature
-				
-			include modals/alert
-			include modals/confirm
-			
+	include review
+	include modals/alert
+	include modals/confirm			
 			
 	div.navbar.navbar-fixed-bottom
 		div.navbar-inner
@@ -63,13 +46,6 @@ block content
 						button#btn-signature.btn.btn-primary
 							i.icon-pencil.icon-white
 							| Signature
-						button#btn-presubmit.btn.btn-primary
+						button#btn-review.btn.btn-primary
 							i.icon-ok.icon-white
-							| Submit
-			
-			#submit-scrollpoint
-				.form-actions
-					Are you sure you want to submit the form?
-					button(type='submit')#member-form-btn1.btn
-					button(type='button')#member-form-btn2.btn
-	
+							| Review

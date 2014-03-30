@@ -2,8 +2,6 @@
 function FormController()
 {
 
-var currentForm;
-
 // Scroll between forms on the screen
 	$('#btn-info').click(function(){
 	$('#btn-info').addClass('btn-warning');
@@ -11,15 +9,14 @@ var currentForm;
 	$('#btn-deposit').removeClass('btn-warning');
 	$('#btn-id').removeClass('btn-warning');
 	$('#btn-signature').removeClass('btn-warning');
-	$('#btn-presubmit').removeClass('btn-warning');
+	$('#btn-review').removeClass('btn-warning');
 	$('#info-scrollpoint').show();
 	$('#address-scrollpoint').hide(); 	
 	$('#deposit-scrollpoint').hide(); 
 	$('#id-scrollpoint').hide();
 	$('#signature-scrollpoint').hide();
-	$('#submit-scrollpoint').hide()
-	$(window).scrollTo('#info-scrollpoint');
-	$('#currentForm').value = '#info-form'; 
+	$('#review-scrollpoint').hide()
+	$(window).scrollTo('#info-scrollpoint'); 
 	});
 	
 	$('#btn-address').click(function(){
@@ -28,15 +25,14 @@ var currentForm;
 	$('#btn-deposit').removeClass('btn-warning');
 	$('#btn-id').removeClass('btn-warning');
 	$('#btn-signature').removeClass('btn-warning');
-	$('#btn-presubmit').removeClass('btn-warning');
+	$('#btn-review').removeClass('btn-warning');
 	$('#address-scrollpoint').show(); 
 	$('#info-scrollpoint').hide(); 
 	$('#deposit-scrollpoint').hide();
 	$('#id-scrollpoint').hide();
 	$('#signature-scrollpoint').hide();
-	$('#submit-scrollpoint').hide();
+	$('#review-scrollpoint').hide();
 	$(window).scrollTo('#address-scrollpoint');
-	$('#currentForm').value = '#info-form'; 
 	});
 	
 	$('#btn-deposit').click(function(){
@@ -45,15 +41,14 @@ var currentForm;
 	$('#btn-address').removeClass('btn-warning');
 	$('#btn-id').removeClass('btn-warning');
 	$('#btn-signature').removeClass('btn-warning');
-	$('#btn-presubmit').removeClass('btn-warning');
+	$('#btn-review').removeClass('btn-warning');
 	$('#deposit-scrollpoint').show(); 
 	$('#info-scrollpoint').hide(); 
 	$('#address-scrollpoint').hide(); 	
 	$('#id-scrollpoint').hide();
 	$('#signature-scrollpoint').hide();
-	$('#submit-scrollpoint').hide();
+	$('#review-scrollpoint').hide();
 	$(window).scrollTo('#deposit-scrollpoint');
-	$('#currentForm').value = '#deposit-form'; 
 	});
 	
 	$('#btn-id').click(function(){
@@ -62,15 +57,14 @@ var currentForm;
 	$('#btn-address').removeClass('btn-warning');
 	$('#btn-deposit').removeClass('btn-warning');
 	$('#btn-signature').removeClass('btn-warning');
-	$('#btn-presubmit').removeClass('btn-warning');
+	$('#btn-review').removeClass('btn-warning');
 	$('#id-scrollpoint').show(); 
 	$('#info-scrollpoint').hide(); 
 	$('#address-scrollpoint').hide(); 	
 	$('#deposit-scrollpoint').hide();
 	$('#signature-scrollpoint').hide();
-	$('#submit-scrollpoint').hide();
+	$('#review-scrollpoint').hide();
 	$(window).scrollTo('#id-scrollpoint');
-	$('#currentForm').value = '#id-form'; 
 	});
 	
 	$('#btn-signature').click(function(){
@@ -79,33 +73,40 @@ var currentForm;
 	$('#btn-address').removeClass('btn-warning');
 	$('#btn-deposit').removeClass('btn-warning');
 	$('#btn-id').removeClass('btn-warning');
-	$('#btn-presubmit').removeClass('btn-warning');
+	$('#btn-review').removeClass('btn-warning');
 	$('#signature-scrollpoint').show(); 
 	$('#info-scrollpoint').hide(); 
 	$('#address-scrollpoint').hide(); 	
 	$('#deposit-scrollpoint').hide();
 	$('#id-scrollpoint').hide();
-	$('#submit-scrollpoint').hide();
+	$('#review-scrollpoint').hide();
 	$(window).scrollTo('#signature-scrollpoint');
-	$('#currentForm').value = '#signature-form'; 
 	});
 	
-	$('#btn-presubmit').click(function(){
-	$('#btn-presubmit').addClass('btn-warning');
+	$('#btn-review').click(function(){
+	$('#btn-review').addClass('btn-warning');
 	$('#btn-info').removeClass('btn-warning');
 	$('#btn-address').removeClass('btn-warning');
 	$('#btn-deposit').removeClass('btn-warning');
 	$('#btn-id').removeClass('btn-warning');
 	$('#btn-signature').removeClass('btn-warning');
-	$('#submit-scrollpoint').show();
+	$('#review-scrollpoint').show();
 	$('#info-scrollpoint').hide(); 
 	$('#address-scrollpoint').hide(); 	
 	$('#deposit-scrollpoint').hide();
 	$('#id-scrollpoint').hide();
 	$('#signature-scrollpoint').hide();
-	$(window).scrollTo('#submit-scrollpoint');
+	$(window).scrollTo('#review-scrollpoint');
 	});
 	
+	$('#member-form-cancel').click(function(){
+	$('#info-scrollpoint').hide();
+	$('#address-scrollpoint').hide(); 	
+	$('#deposit-scrollpoint').hide(); 
+	$('#id-scrollpoint').hide();
+	$('#signature-scrollpoint').hide();
+	$('#submit-scrollpoint').hide()
+	});
 	
 	//Clear signature
 $('#btn-delsig').click(function(){$('#signature').jSignature('clear');});
@@ -115,46 +116,30 @@ $('#btn-delsig').click(function(){$('#signature').jSignature('clear');});
 
 // handle user logout //
 	$('#btn-logout').click(function(){ that.attemptLogout(); });
-
-// confirm clearing the form //
-//	$('#info-form-btn1').click(function(){$('.modal-confirm').modal('show')});
-
-// handle submitting the form //
-	$('#member-form-btn1').click(function(){that.submitForm(); });
+	
 /*
-	$(currentForm).submit(function(e) {
-    e.preventDefault(); // Prevents the page from refreshing
-    var $this = $(this); // `this` refers to the current form element
-    $.post(
-        $this.attr('action'), // Gets the URL to send the post to
-        $this.serialize(), // Serializes form data in standard format
-        function(data) { creator: $('#username').val(),
-					fname: $('#fname'.val(),
-					mname: $('#mname'.val(),
-					lname: $('#lname'.val(),
-					email: $('#email'.val(),
-					ssn:   $('#ssn'.val(),
-					state: $('#state'.val()},
-        "json" // The format the response should be in
-		);
-	});
-*/	
-	this.submitForm = function()
-	{
-		var that = this;
-		$.ajax({
-			type: "POST",
-			url: $('form').attr("action"),
-			data: $(('#currentForm').value).serialize(),
-			success: function(data){
-	 			that.showLockedAlert('The account has been updated');
-			},
-			error: function(jqXHR){
-				console.log(jqXHR.responseText+' :: '+jqXHR.statusText);
-			}
-		});
-	}
+	$('#member-form-submit').click(function(){ that.submitForm(); });
+	
+	$("#member-form").submit(function(){
+		var formData = new FormData($(this)[0]);
 
+		$.ajax({
+		url:$(this).attr("action"),
+		type: 'POST',
+		data: formData,
+		async: false,
+		success: function (data) {
+		alert(data);
+		location.reload();
+		},
+		cache: false,
+		contentType: false,
+		processData: false
+		});
+		return false;	
+	});
+	
+*/	
 	this.attemptLogout = function()
 	{
 		logout = true;
@@ -172,6 +157,64 @@ $('#btn-delsig').click(function(){$('#signature').jSignature('clear');});
 		});
 	}
 
+/*	
+	
+	//Program a custom submit function for the form
+	this.submitForm(event)
+	var that = this;
+	{
+	$("#member-form").submit(function(event){
+ 
+	//disable the default form submission
+	event.preventDefault();
+ 
+	//grab all form data  
+	var formData = new FormData($(this)[0]);
+ 
+	  $.ajax({
+		url: '/memberinfo',
+		type: 'POST',
+		data: formData,
+		async: false,
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function (returndata) {
+		  alert(returndata);
+		}
+	  });
+	 
+	  return false;
+	});
+	}
+	/*	
+	this.submitForm = function()
+	{
+	
+		var that = this;
+		$ajax({
+			
+	
+//	$("#member-form").ajaxForm(function(){
+		var formData = new FormData(($'#member-form')[0]));
+
+//		$.ajax({
+		url:"/memberinfo",
+		type: 'POST',
+		data: formData,
+		async: false,
+		success: function (data) {
+		alert(data);
+		location.reload();
+		},
+		cache: false,
+		contentType: false,
+		processData: false
+		});
+//		return false;
+		
+	}
+*/
 	this.showLockedAlert = function(msg){
 		$('.modal-alert').modal({ show : false, keyboard : false, backdrop : 'static' });
 		$('.modal-alert .modal-header h3').text('Success!');
@@ -189,7 +232,7 @@ $('#btn-delsig').click(function(){$('#signature').jSignature('clear');});
 
 FormController.prototype.onUpdateSuccess = function()
 {
-	$('.modal-alert').modal({ show : false, keyboard : true, backdrop : true });
+	$('.modal-alert').modal({ show : false, keyboard : true, backdrop : false });
 	$('.modal-alert .modal-header h3').text('Success!');
 	$('.modal-alert .modal-body p').html('The member info has been submitted');
 	$('.modal-alert').modal('show');

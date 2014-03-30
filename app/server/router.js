@@ -2,6 +2,7 @@
 var CT = require('./modules/country-list');
 var ST = require('./modules/state-list');
 var AM = require('./modules/account-manager');
+var PDF = require('./modules/pdfFormCreator');
 var EM = require('./modules/email-dispatcher');
 var fs = require('fs');
 
@@ -84,9 +85,79 @@ module.exports = function(app) {
 		}
 	});
 	
-
 // Member Forms //
 
+	app.get('/memberinfo', function(req, res) {
+	    if (req.session.user == null){
+	// if user is not logged-in redirect back to login page //
+	        res.redirect('/');
+	    }   	
+		else {
+			res.render('memberinfo', {
+			title : 'Member Info',
+			states : ST,
+			udata : req.session.user
+			});
+		}
+	});
+		
+	app.post('/memberinfo', function(req, res){
+		if (req.param('logout') == 'true'){
+			res.clearCookie('user');
+			res.clearCookie('pass');
+			req.session.destroy(function(e){ res.send('ok', 200); });
+		}
+		else{
+		
+			/// Verify there is an ID file
+			
+			var idName = req.files.identification.name
+
+			if(idName){
+
+			var idPath = __dirname + "/uploads/" + idName;
+
+			/// write file to uploads folder
+			fs.writeFileSync(idPath, data, function (err, idPath) {
+			if (err) throw err;
+		  	/// let's see it
+		  	//res.redirect("/uploads/" + imageName);
+				});
+			}
+
+			var sigPath = __dirname + "/uploads/" + req.files.signature.name
+
+			/// write file to uploads folder
+			fs.writeFileSync(sigPath, data, function (err, sigPath) {
+			if (err) throw err;
+				});
+			
+			member = new Object();
+			
+				member.fname=req.param('fname');
+				member.mname=req.param('mname');
+				member.lname=req.param('lname');
+				member.email=req.param('email');
+				member.state=req.param('state');
+				member.ssn=req.param('ssn');
+				member.depositamt=req.param('depositAmt');
+				member.depsittype=req.param('depositType');
+				member.creator=req.param('creator');
+				member.sigPath=sigPath;
+				member.idPath=sigPath;
+			
+			 var output=PDF.create(member);
+			
+		
+			res.send('ok', 200);
+			}	
+	});
+
+/*
+	
+	
+// Member Forms //
+/*
 	app.get('/memberinfo', function(req, res) {
 	    if (req.session.user == null){
 	// if user is not logged-in redirect back to login page //
@@ -108,6 +179,8 @@ module.exports = function(app) {
 			});
 		}
 	});
+
+
 		
 	app.post('/memberinfo', function(req, res){
 		if (req.param('logout') == 'true'){
@@ -116,6 +189,36 @@ module.exports = function(app) {
 			req.session.destroy(function(e){ res.send('ok', 200); });
 		}
 		else {
+		
+			var idName = req.files.identification.name
+
+			/// If there's an error
+			if(!idName){
+
+			console.log("There was an error with the ID file")
+			res.redirect("/memberinfo");
+			res.end();
+			} 
+			else {
+
+			var idPath = __dirname + "/uploads/" + idName;
+
+			/// write file to uploads folder
+			fs.writeFileSync(idPath, data, function (err, idPath) {
+			if (err) throw err;
+		  	/// let's see it
+		  	//res.redirect("/uploads/" + imageName);
+				});
+			}
+
+			var sigPath = __dirname + "/uploads/" + req.files.signature.name
+
+			/// write file to uploads folder
+			fs.writeFileSync(sigPath, data, function (err, sigPath) {
+			if (err) throw err;
+				});
+			}
+			
 			AM.addMember({
 				fname 		: req.param('fname'),
 				mname 		: req.param('mname'),
@@ -123,51 +226,25 @@ module.exports = function(app) {
 				email 		: req.param('email'),
 				state 		: req.param('state'),
 				ssn			: req.param('ssn'),
-				id	 		: req.param('id'),
-				depositamt 	: req.param('depositamt'),
-				depsittype	: req.param('deposittype'),
-				signature	: req.param('signature'),
-				user		: req.param('creator')
-			}, function(e, m){
+				depositamt 	: req.param('depositAmt'),
+				depsittype	: req.param('depositType'),
+				signature	: sigPath,
+				user		: req.param('creator'),
+				idfile		: newPath
+				}
+			, function(e, m){
 				if (e){
-					res.send(e, 400);
+				res.send(e, 400);
 				}	
 				else{
-					res.send('ok', 200);
+				res.send('ok', 200);
 				}
-			});
-		}	
+			});	
 		
 	});
+
+*/
 	
-	
-	app.post('/api/uploadContent', function (req, res) {
-			
-		fs.readFile(req.files.identification.path, function (err, data) {
-
-		var imageName = req.files.identification.name
-
-		/// If there's an error
-		if(!imageName){
-
-			console.log("There was an error")
-			res.redirect("/memberinfo");
-			res.end();
-
-		} else {
-
-		  var newPath = __dirname + "/uploads/" + imageName;
-
-		  /// write file to uploads folder
-		  fs.writeFileSync(newPath, data, function (err, newPath) {
-			if (err) throw err;
-		  	/// let's see it
-		  	res.redirect("/uploads/fullsize/" + imageName);
-		  });
-		}
-	});
-});
-
 // creating new accounts //
 	
 	app.get('/signup', function(req, res) {
