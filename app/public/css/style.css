@@ -53,13 +53,8 @@ body {
   text-shadow: -1px 1px 0 #fff;
   -moz-text-shadow: -1px 1px 0 #fff;
   -webkit-text-shadow: -1px 1px 0 #fff;
-<<<<<<< HEAD
-}
-#member-form,
-=======
   color: #d8000c;
 }
->>>>>>> e64f4e643f3418cdf4536c422d4cc4550b26a93c
 #info-form-container {
   overflow-y: hidden;
   width: 340px;
@@ -73,6 +68,22 @@ body {
   text-shadow: -1px 1px 0 #fff;
   -moz-text-shadow: -1px 1px 0 #fff;
   -webkit-text-shadow: -1px 1px 0 #fff;
+  color: #d8000c;
+}
+#address-form-container {
+  overflow-y: hidden;
+  width: 340px;
+  margin: 40px auto;
+}
+#state-list {
+  width: 280px;
+}
+.modal-form-errors li {
+  color: #808080;
+  text-shadow: -1px 1px 0 #fff;
+  -moz-text-shadow: -1px 1px 0 #fff;
+  -webkit-text-shadow: -1px 1px 0 #fff;
+  color: #d8000c;
 }
 #deposit-form-container {
   width: 340px;
@@ -98,7 +109,6 @@ body {
   padding-bottom: 1000px;
 }
 #info-scrollpoint {
-<<<<<<< HEAD
   padding-top: 0px;
   padding-bottom: 0px;
 }
@@ -121,8 +131,6 @@ body {
 #review-scrollpoint {
   padding-top: 0px;
   padding-bottom: 600px;
-=======
-  padding-top: 5px;
 }
 #deposit-scrollpoint {
   padding-top: 100px;
@@ -132,7 +140,6 @@ body {
 }
 #signature-scrollpoint {
   padding-top: 100px;
->>>>>>> e64f4e643f3418cdf4536c422d4cc4550b26a93c
 }
 .modal-single-input {
   width: 452px;
@@ -172,8 +179,8 @@ body {
   width: 200px;
 }
 #button-container {
-  height: 2%;
-  margin-left: 0px;
+  width: 550px;
+  float: center;
 }
 #print {
   padding: 20px;
