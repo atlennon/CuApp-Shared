@@ -23,7 +23,7 @@ $(document).ready(function(){
 			}	
 	});
 
-*/
+
 	//Program a custom submit function for the form
 	$("#member-form").bind('submit',function(event){
  
@@ -48,7 +48,7 @@ $(document).ready(function(){
 	 
 	  return false;
 	});
-	
+*/	
 	//$('#fname-tf').focus();
 	$('#github-banner').css('top', '40px');
 	

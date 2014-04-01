@@ -105,6 +105,10 @@ body {
   width: 340px;
   margin: 40px auto;
 }
+#review-container,
+height 200px,
+width 340px,
+margin 40pxauto,
 #whitespace {
   padding-bottom: 1000px;
 }
@@ -140,6 +144,9 @@ body {
 }
 #signature-scrollpoint {
   padding-top: 100px;
+}
+#review-scrollpoint {
+  padding-top: 20px;
 }
 .modal-single-input {
   width: 452px;
@@ -179,7 +186,6 @@ body {
   width: 200px;
 }
 #button-container {
-  width: 550px;
   float: center;
 }
 #print {

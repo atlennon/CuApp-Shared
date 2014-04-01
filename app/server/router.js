@@ -4,6 +4,7 @@ var ST = require('./modules/state-list');
 var AM = require('./modules/account-manager');
 var PDF = require('./modules/pdfFormCreator');
 var EM = require('./modules/email-dispatcher');
+var uploadHelper = require('./modules/uploadHelper');
 var fs = require('fs');
 
 module.exports = function(app) {
@@ -100,7 +101,21 @@ module.exports = function(app) {
 			});
 		}
 	});
+
+	
+	app.post('/memberinfo' , function(req,res){
+				if (req.param('logout') == 'true'){
+				res.clearCookie('user');
+				res.clearCookie('pass');
+				req.session.destroy(function(e){ res.send('ok', 200); });
+			}
+			else {
+					uploadHelper.doUpload(req,res);
+			}
+		});
 		
+/*		
+
 	app.post('/memberinfo', function(req, res){
 		if (req.param('logout') == 'true'){
 			res.clearCookie('user');
@@ -153,11 +168,10 @@ module.exports = function(app) {
 			}	
 	});
 
-/*
 	
 	
 // Member Forms //
-/*
+
 	app.get('/memberinfo', function(req, res) {
 	    if (req.session.user == null){
 	// if user is not logged-in redirect back to login page //
@@ -191,6 +205,8 @@ module.exports = function(app) {
 		else {
 		
 			var idName = req.files.identification.name
+			
+			data = req.files.identification
 
 			/// If there's an error
 			if(!idName){

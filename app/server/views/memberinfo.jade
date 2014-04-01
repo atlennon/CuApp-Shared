@@ -23,10 +23,109 @@ block content
 								i.icon-lock.icon-white
 								| Sign Out
 			
-	include review
-	include modals/alert
-	include modals/confirm			
+	// preset form values if we receive a user object //
+	- user = typeof(udata)
+	// store the userId on the client side in a hidden input field //
+
+	input(type='hidden', value= user._id)#userId
+	input(type='hidden', value= user.user)#user
+	- member = typeof(mdata) != 'undefined' ? mdata : { }
+		
+		form(method="POST", action="/memberinfo", enctype="multipart/form-data")#member-form
+			#info-scrollpoint
+				#info-form-container.well
+						h1
+						fieldset
+							#fname-cg.control-group
+								label.control-label(for='fname-tf') First Name
+								.controls
+									input#fname-tf.input-xlarge(type='text', name='fname', value= member.fname).required
+							#mname-cg.control-group
+								label.control-label(for='mname-tf') Middle Name
+								.controls
+									input#mname-tf.input-xlarge(type='text', name='mname', value= member.mname)
+							#lname-cg.control-group
+								label.control-label(for='lname-tf') Last Name
+								.controls	
+									input#lname-tf.input-xlarge(type='text', name='lname', value= member.lname).required
+							#email-cg.control-group
+								label.control-label(for='email-tf') Email
+								.controls
+									input#email-tf.input-xlarge(type='text', name='email', value= member.email).required
+							#creator-cg.control-group
+								label.control-label(for='creator-tf')
+								.controls
+									input#creator-tf.input-xlarge(type='hidden', name='creator', value= user.user)
 			
+			#address-scrollpoint
+				#address-form-container.well
+						h1
+						fieldset
+							#addr1-cg.control-group
+								label.control-label(for='addr1-tf') Street Address
+								.controls
+									input#name-tf.input-xlarge(type='text', name='addr1', value= member.addr1)
+							#city-cg.control-group
+								label.control-label(for='city-tf') City
+								.controls
+									input#city-tf.input-xlarge(type='text', name='city', value= member.city)
+							#slist-cg.control-group
+								label.control-label(for='state-list') State
+								.controls
+									select#state-list(name='state')
+										each item in states
+											option(selected=item.name == member.state)= item.name
+							#zip-cg.control-group
+								label.control-label(for='zip-tf') Zip
+								.controls	
+									input#zip-tf.input-small(type='text', name='zip', value= member.zip)
+			
+			#deposit-scrollpoint
+				#deposit-form-container.well
+						h1
+						fieldset
+							#depositType-cg.control-group
+								label.control-label(for='depositType-tf') Deposit Type
+								.controls
+									input#depositType-tf.input-medium(type='input', name='depositType', value= member.depositType)
+							#depositAmt-cg.control-group
+								label.control-label(for='depositAmt-tf') Deposit Amount
+								.controls
+									input#depositAmt-tf.input-medium(type='number', name='depositAmt', value= member.depositAmt)
+			
+			#id-scrollpoint
+				//- video(id="video", width="300", height="400", autoplay)
+				//- canvas(id="canvas", width="300",height="400")
+				//- button(id="snap") SNAP
+				#id-container.well
+							input(type="file", name="identification", id="identification", accept="image/*;capture=camera").input
+							#ssn-cg.control-group
+									label.control-label(for='ssn-tf') SSN#
+									.controls
+										input#ssn-tf.input-medium(type='text', name='ssn', value= member.ssn)
+			
+			#signature-scrollpoint
+				#signature-container
+					button#btn-delsig.btn.btn
+									i.icon-refresh.icon-black
+									| Reload Signature
+						#signature.well		
+			
+			#review-scrollpoint
+				#info-form-container.well
+				
+					Are you sure you want to submit the form?
+					br
+					br
+					input.button(type='submit')#member-form-btn1.btn
+						input.button2(type='submit', value='Upload', id='fileUploadButton')
+				
+				
+		// display form errors in a custom modal window //
+		include modals/form-errors
+		include modals/alert
+		include modals/confirm			
+				
 	div.navbar.navbar-fixed-bottom
 		div.navbar-inner
 			div.container-fluid#bottom-nav
