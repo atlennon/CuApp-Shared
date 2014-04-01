@@ -29,7 +29,7 @@ app.configure('development', function(){
 	app.use(express.errorHandler());
 });
 
-require('./app/server/router')(app);
+require('./app/router')(app);
 
 db.connect();
 	
