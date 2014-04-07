@@ -98,7 +98,7 @@ body {
   color: #d8000c;
 }
 #id-container {
-  width: 200px;
+  width: 250px;
   margin: 40px auto;
 }
 #signature-container {
@@ -187,9 +187,18 @@ margin 40pxauto,
   width: 200px;
 }
 #button-container {
-  width: 50%;
   margin-right: auto;
   margin-left: auto;
+  float: none;
+  display: inline-block;
+  *display: inline;
+/* ie7 fix */
+  *zoom: 1;
+/* hasLayout ie7 trigger */
+  vertical-align: top;
+}
+.navbar-inner {
+  text-align: center;
 }
 #print {
   padding: 20px;

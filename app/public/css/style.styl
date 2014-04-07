@@ -95,7 +95,7 @@ body
 	color #D8000C
 	
 #id-container
-	width 200px
+	width 250px
 	margin 40px auto
 	
 #signature-container
@@ -192,13 +192,22 @@ margin 40px auto
 	width 200px
 	
 #button-container {
-	//height 2%;
-	width 50%
-	//padding 0px 0px 0px 0px
+  //height 2%;
+  //width 50%
+  //padding 0px 0px 0px 0px
 	margin-right auto
 	margin-left auto
+	float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+    *zoom:1; /* hasLayout ie7 trigger */
+    vertical-align: top;
+	
 }	
 
+.navbar-inner {
+    text-align:center;
+}
 
 	 
 // support pages //
