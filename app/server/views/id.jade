@@ -3,9 +3,10 @@
 	//- canvas(id="canvas", width="300",height="400")
 	//- button(id="snap") SNAP
 	#id-container.well
-			form(method='post', name='', action='/doUpload',enctype='multipart/form-data')
-				input(type="file", name="identification", id="identification", accept="image/*;capture=camera").input
-		#ssn-cg.control-group
-				label.control-label(for='ssn-tf') SSN#
-				.controls
-					input#ssn-tf.input-medium(type='text', name='ssn', value= member.ssn)
+			h1
+				form(method='post', name='', action='/doUpload',enctype='multipart/form-data')
+					input(type="file", name="identification", id="identification", accept="image/*;capture=camera").input
+			#ssn-cg.control-group
+					label.control-label(for='ssn-tf') SSN#
+					.controls
+						input#ssn-tf.input-medium(type='text', name='ssn', value= member.ssn)

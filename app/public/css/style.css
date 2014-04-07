@@ -57,7 +57,7 @@ body {
 }
 #info-form-container {
   overflow-y: hidden;
-  width: 340px;
+  width: 285px;
   margin: 40px auto;
 }
 #state-list {
@@ -72,7 +72,7 @@ body {
 }
 #address-form-container {
   overflow-y: hidden;
-  width: 340px;
+  width: 285px;
   margin: 40px auto;
 }
 #state-list {
@@ -86,8 +86,9 @@ body {
   color: #d8000c;
 }
 #deposit-form-container {
-  width: 340px;
+  width: 240px;
   margin: 40px auto;
+  text-align: center;
 }
 .modal-form-errors li {
   color: #808080;
@@ -186,7 +187,9 @@ margin 40pxauto,
   width: 200px;
 }
 #button-container {
-  float: center;
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
 }
 #print {
   padding: 20px;
