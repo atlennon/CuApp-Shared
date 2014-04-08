@@ -24,7 +24,7 @@ block content
 								| Sign Out
 			
 	// preset form values if we receive a user object //
-	- user = typeof(udata)
+	- user = typeof(udata) != 'undefined' ? udata : { }
 	// store the userId on the client side in a hidden input field //
 
 	input(type='hidden', value= user._id)#userId
@@ -87,7 +87,7 @@ block content
 							#depositType-cg.control-group
 								label.control-label(for='depositType-tf') Deposit Type
 								.controls
-									input#depositType-tf.input-medium(type='input', name='depositType', value= member.depositType)
+									input#depositType-tf.input-medium(type='text', name='depositType', value= member.depositType)
 							#depositAmt-cg.control-group
 								label.control-label(for='depositAmt-tf') Deposit Amount
 								.controls
