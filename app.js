@@ -14,7 +14,7 @@ app.configure(function(){
 	app.set('views', __dirname + '/app/server/views');
 	app.set('view engine', 'jade');
 	app.locals.pretty = true;
-	app.use(express.favicon(__dirname + '/app/public/css/favicon.ico'));
+	app.use(express.favicon(__dirname + '/app/public/css/apple-touch-icon.png'));
 	app.use(express.logger('dev'));
 	app.use(express.bodyParser());
 	app.use(expressValidator());
