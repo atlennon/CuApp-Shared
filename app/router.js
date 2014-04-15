@@ -4,7 +4,6 @@ var ST = require('./server/modules/state-list');
 var AM = require('./server/modules/account-manager');
 var PDF = require('./pdfFormCreator');
 var EM = require('./server/modules/email-dispatcher');
-var uploadHelper = require('./server/modules/uploadHelper');
 var fs = require('fs');
 
 module.exports = function(app) {
@@ -112,17 +111,34 @@ app.post('/memberinfo', function(req, res) {
 			}
 		else{
 				
+				var output;
 				var imageName = req.files.identification.name
 
 				/// If there's an error
 				if(!imageName){
 
-					console.log("There was an error")
+					console.log("There was an error with the id file")
 					res.redirect("/");
 					res.end();
 
 				} 
 				else {
+				
+				var sigdata = req.param('signature_capture');
+
+				function decodeBase64Image(dataString) {
+				var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+				response = {};
+
+				if (matches.length !== 3) {
+				return new Error('Invalid signature string');
+				}
+
+				response.type = matches[1];
+				response.data = new Buffer(matches[2], 'base64');
+
+				return response;
+				}
 				
 					member = new Object();
 					member.fname=req.param('fname');
@@ -138,181 +154,31 @@ app.post('/memberinfo', function(req, res) {
 					member.ssn=req.param('ssn');
 					member.creator=req.param('creator');
 				  
+				  var imageBuffer = decodeBase64Image(sigdata);
+				  var sigPath = __dirname + "/public/uploads/" + member.lname + 'sig.jpg';
+				  fs.writeFile(sigPath, imageBuffer.data, function(err) {if (err) throw err;});
+
 				  fs.readFile(req.files.identification.path, function (err, data) {		
-				  var newPath = __dirname + "/public/uploads/" + member.lname + '.jpg';
+				  var idPath = __dirname + "/public/uploads/" + member.lname + '.jpg';
 				  
 				  /// write file to uploads folder
-				  fs.writeFile(newPath, data, function (err) {
-					
-					var output=PDF.create(member);
-						/// Download it 
-						res.download(output);
-
+				  fs.writeFile(idPath, data, function (err) {if (err) throw err;});
+				
 				  });
-				});
+						console.log('Wait for images to be uploaded');
+						setTimeout(function(){PDF.create(member);}, 10000); // 2 seconds pass..
+						console.log('Wait for PDF to be created');
+						setTimeout(function(){console.log(output);}, 10000); // 2 seconds pass..
+						var serverpath = 'http://localhost/pdf/'+ member.creator + '.pdf'
+						if(output)
+						res.redirect(serverpath);
+						else
+						setTimeout(function(){console.log('More Delay'); res.redirect(serverpath);}, 20000); // 2 seconds pass..
 			}
 		}
 });	
 
-/*	
 
-	app.post('/memberinfo' , function(req,res){
-				if (req.param('logout') == 'true'){
-				res.clearCookie('user');
-				res.clearCookie('pass');
-				req.session.destroy(function(e){ res.send('ok', 200); });
-			}
-			else {
-					uploadHelper.doUpload(req,res);
-			}
-		});
-		
-	
-
-	app.post('/memberinfo', function(req, res){
-		if (req.param('logout') == 'true'){
-			res.clearCookie('user');
-			res.clearCookie('pass');
-			req.session.destroy(function(e){ res.send('ok', 200); });
-		}
-		else{
-		
-			/// Verify there is an ID file
-			
-			var idName = req.files.identification.name
-
-			if(idName){
-
-			var idPath = __dirname + "/uploads/" + idName;
-
-			/// write file to uploads folder
-			fs.writeFileSync(idPath, data, function (err, idPath) {
-			if (err) throw err;
-		  	/// let's see it
-		  	//res.redirect("/uploads/" + imageName);
-				});
-			}
-
-			var sigPath = __dirname + "/uploads/" + req.files.signature.name
-
-			/// write file to uploads folder
-			fs.writeFileSync(sigPath, data, function (err, sigPath) {
-			if (err) throw err;
-				});
-			
-			member = new Object();
-			
-				member.fname=req.param('fname');
-				member.mname=req.param('mname');
-				member.lname=req.param('lname');
-				member.email=req.param('email');
-				member.state=req.param('state');
-				member.ssn=req.param('ssn');
-				member.depositamt=req.param('depositAmt');
-				member.depsittype=req.param('depositType');
-				member.creator=req.param('creator');
-				member.sigPath=sigPath;
-				member.idPath=sigPath;
-			
-			 var output=PDF.create(member);
-			
-		
-			res.send('ok', 200);
-			}	
-	});
-
-	
-	
-// Member Forms //
-
-	app.get('/memberinfo', function(req, res) {
-	    if (req.session.user == null){
-	// if user is not logged-in redirect back to login page //
-	        res.redirect('/');
-	    }   
-		else{
-			AM.addMember(req.session.user, function(e, m){
-				if (e){
-					res.render('404',{title: 'Databease Error'});
-				}	
-				else {
-					res.render('memberinfo', {
-					title : 'Member Info',
-					states : ST,
-					udata : req.session.user,
-					mdata : m
-					});
-				}
-			});
-		}
-	});
-
-
-		
-	app.post('/memberinfo', function(req, res){
-		if (req.param('logout') == 'true'){
-			res.clearCookie('user');
-			res.clearCookie('pass');
-			req.session.destroy(function(e){ res.send('ok', 200); });
-		}
-		else {
-		
-			var idName = req.files.identification.name
-			
-			data = req.files.identification
-
-			/// If there's an error
-			if(!idName){
-
-			console.log("There was an error with the ID file")
-			res.redirect("/memberinfo");
-			res.end();
-			} 
-			else {
-
-			var idPath = __dirname + "/uploads/" + idName;
-
-			/// write file to uploads folder
-			fs.writeFileSync(idPath, data, function (err, idPath) {
-			if (err) throw err;
-		  	/// let's see it
-		  	//res.redirect("/uploads/" + imageName);
-				});
-			}
-
-			var sigPath = __dirname + "/uploads/" + req.files.signature.name
-
-			/// write file to uploads folder
-			fs.writeFileSync(sigPath, data, function (err, sigPath) {
-			if (err) throw err;
-				});
-			}
-			
-			AM.addMember({
-				fname 		: req.param('fname'),
-				mname 		: req.param('mname'),
-				lname 		: req.param('lname'),
-				email 		: req.param('email'),
-				state 		: req.param('state'),
-				ssn			: req.param('ssn'),
-				depositamt 	: req.param('depositAmt'),
-				depsittype	: req.param('depositType'),
-				signature	: sigPath,
-				user		: req.param('creator'),
-				idfile		: newPath
-				}
-			, function(e, m){
-				if (e){
-				res.send(e, 400);
-				}	
-				else{
-				res.send('ok', 200);
-				}
-			});	
-		
-	});
-
-*/
 	
 // creating new accounts //
 	

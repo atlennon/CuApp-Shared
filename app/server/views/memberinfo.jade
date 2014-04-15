@@ -107,9 +107,15 @@ block content
 			#signature-scrollpoint
 				#signature-container
 					button#btn-delsig.btn.btn
-									i.icon-refresh.icon-black
-									| Reload Signature
-						#signature.well		
+							i.icon-refresh.icon-black
+							| Reload Signature
+					button#btn-savesig.btn.btn
+							i.icon-check.icon-black
+							| Save Signature
+					br
+					br
+					#signature.well	
+					input(type='hidden',name='signature_capture', id='signature_capture').input
 			
 			#review-scrollpoint
 				#info-form-container.well
@@ -118,7 +124,6 @@ block content
 					br
 					br
 					input.button(type='submit')#member-form-btn1.btn
-						input.button2(type='submit', value='Upload', id='fileUploadButton')
 				
 				
 		// display form errors in a custom modal window //
@@ -140,6 +145,7 @@ block content
 							button#btn-deposit.btn.btn-primary
 								i.icon-plus.icon-white
 								| Deposit
+						div.btn-group.sm#button-container	
 							button#btn-id.btn.btn-primary
 								i.icon-camera.icon-white
 								| ID
@@ -147,5 +153,5 @@ block content
 								i.icon-pencil.icon-white
 								| Signature
 							button#btn-review.btn.btn-primary
-								i.icon-ok.icon-white
+								icon-ok.icon-white
 								| Review

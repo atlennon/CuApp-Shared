@@ -5,14 +5,25 @@ raiseText()
 	-webkit-text-shadow: -1px 1px 0 white
 	//font-family:"Times New Roman", Times, serif//
 	
-h1 {font-family: "Brush Script MT", cursive; text-align: center; color:white;  color: white;
+h1 { font-family: "Brush Script MT", cursive; text-align: center; color:white;  color: white;
     text-shadow:
     -1px -1px 0 #C0C0C0,
-    2px -2px 0 #C0C0C0,
+    1px -1px 0 #C0C0C0,
     -1px 1px 0 #C0C0C0,
-    2px 2px 0 #C0C0C0;}
+    1px 1px 0 #C0C0C0;}
 	
 h2 { text-align: center }
+
+.orientleft #shell {
+    -webkit-transform: rotate(-90deg);
+    -webkit-transform-origin:160px 160px;
+}
+ 
+.orientright #shell {
+    -webkit-transform: rotate(90deg);
+    -webkit-transform-origin:230px 230px;
+} 
+
 
 body 
 
@@ -99,9 +110,10 @@ body
 	margin 40px auto
 	
 #signature-container
-	height 200px
+	height 400px
 	width 340px
 	margin 40px auto
+
 	
 #review-container
 	height 200px
@@ -135,7 +147,7 @@ body
 }
 #review-scrollpoint{
 	padding-top: 0 px
-	padding-bottom: 600px
+	padding-bottom: 300px
 }
 #deposit-scrollpoint{
 	padding-top: 100px
@@ -144,7 +156,7 @@ body
 	padding-top: 100px
 }
 #signature-scrollpoint{
-	padding-top: 100px
+	padding-top: 50px
 }
 
 #review-scrollpoint{
@@ -188,8 +200,6 @@ body
     
 // Buttons //   
 
-#btn-delsig
-	width 200px
 	
 #button-container {
   //height 2%;
@@ -202,6 +212,7 @@ body
     *display:inline; /* ie7 fix */
     *zoom:1; /* hasLayout ie7 trigger */
     vertical-align: top;
+	
 	
 }	
 

@@ -3,10 +3,18 @@ h1 {
   text-align: center;
   color: #fff;
   color: #fff;
-  text-shadow: -1px -1px 0 #c0c0c0, 2px -2px 0 #c0c0c0, -1px 1px 0 #c0c0c0, 2px 2px 0 #c0c0c0;
+  text-shadow: -1px -1px 0 #c0c0c0, 1px -1px 0 #c0c0c0, -1px 1px 0 #c0c0c0, 1px 1px 0 #c0c0c0;
 }
 h2 {
   text-align: center;
+}
+.orientleft #shell {
+  -webkit-transform: rotate(-90deg);
+  -webkit-transform-origin: 160px 160px;
+}
+.orientright #shell {
+  -webkit-transform: rotate(90deg);
+  -webkit-transform-origin: 230px 230px;
 }
 body {
   height: 100%;
@@ -102,7 +110,7 @@ body {
   margin: 40px auto;
 }
 #signature-container {
-  height: 200px;
+  height: 400px;
   width: 340px;
   margin: 40px auto;
 }
@@ -136,7 +144,7 @@ body {
 }
 #review-scrollpoint {
   padding-top: 0px;
-  padding-bottom: 600px;
+  padding-bottom: 300px;
 }
 #deposit-scrollpoint {
   padding-top: 100px;
@@ -145,7 +153,7 @@ body {
   padding-top: 100px;
 }
 #signature-scrollpoint {
-  padding-top: 100px;
+  padding-top: 50px;
 }
 #review-scrollpoint {
   padding-top: 20px;
@@ -183,9 +191,6 @@ body {
 .modal-alert {
   width: 310px;
   margin: -200px 0 0 -150px;
-}
-#btn-delsig {
-  width: 200px;
 }
 #button-container {
   margin-right: auto;
