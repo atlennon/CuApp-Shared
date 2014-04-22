@@ -96,6 +96,28 @@ function FormController()
 	$('#deposit-scrollpoint').hide();
 	$('#id-scrollpoint').hide();
 	$('#signature-scrollpoint').hide();
+	 var content = $("#fname-tf").val();
+      $("#fname-rev").val(content);
+	  content = $("#mname-tf").val();
+      $("#mname-rev").val(content);
+	  content = $("#lname-tf").val();
+      $("#lname-rev").val(content);
+	  content = $("#email-tf").val();
+      $("#email-rev").val(content);
+	  content = $("#ssn-tf").val();
+      $("#ssn-rev").val(content);
+	  content = $("#addr1-tf").val();
+      $("#addr-rev").val(content);
+	  content = $("#city-tf").val();
+      $("#city-rev").val(content);
+	  content = $("#state-list").val();
+      $("#state-rev").val(content);
+	  content = $("#zip-tf").val();
+      $("#zip-rev").val(content);
+	   content = $("#deposit-list").val();
+      $("#deposit-type-rev").val(content);
+	  content = $("#depositAmt-tf").val();
+      $("#deposit-amt-rev").val(content);
 	$(window).scrollTo('#review-scrollpoint');
 	});
 	
@@ -109,7 +131,19 @@ function FormController()
 	});
 	
 	//Clear signature
-$('#btn-delsig').click(function(){$('#signature').jSignature('clear');});
+	$('#btn-delsig').click(function(){
+	$('#signature').jSignature('clear');
+	return false;
+	});
+
+	//Store Signature as string
+	$('#btn-savesig').click(function() {
+	$('#signature_capture').val($('#signature').jSignature('getData'));
+	return false;
+	});
+
+
+		   
 
 // bind event listeners to button clicks //
 	var that = this;
@@ -117,29 +151,7 @@ $('#btn-delsig').click(function(){$('#signature').jSignature('clear');});
 // handle user logout //
 	$('#btn-logout').click(function(){ that.attemptLogout(); });
 	
-/*
-	$('#member-form-submit').click(function(){ that.submitForm(); });
-	
-	$("#member-form").submit(function(){
-		var formData = new FormData($(this)[0]);
 
-		$.ajax({
-		url:$(this).attr("action"),
-		type: 'POST',
-		data: formData,
-		async: false,
-		success: function (data) {
-		alert(data);
-		location.reload();
-		},
-		cache: false,
-		contentType: false,
-		processData: false
-		});
-		return false;	
-	});
-	
-*/	
 	this.attemptLogout = function()
 	{
 		logout = true;
@@ -157,64 +169,7 @@ $('#btn-delsig').click(function(){$('#signature').jSignature('clear');});
 		});
 	}
 
-/*	
-	
-	//Program a custom submit function for the form
-	this.submitForm(event)
-	var that = this;
-	{
-	$("#member-form").submit(function(event){
- 
-	//disable the default form submission
-	event.preventDefault();
- 
-	//grab all form data  
-	var formData = new FormData($(this)[0]);
- 
-	  $.ajax({
-		url: '/memberinfo',
-		type: 'POST',
-		data: formData,
-		async: false,
-		cache: false,
-		contentType: false,
-		processData: false,
-		success: function (returndata) {
-		  alert(returndata);
-		}
-	  });
-	 
-	  return false;
-	});
-	}
-	/*	
-	this.submitForm = function()
-	{
-	
-		var that = this;
-		$ajax({
-			
-	
-//	$("#member-form").ajaxForm(function(){
-		var formData = new FormData(($'#member-form')[0]));
 
-//		$.ajax({
-		url:"/memberinfo",
-		type: 'POST',
-		data: formData,
-		async: false,
-		success: function (data) {
-		alert(data);
-		location.reload();
-		},
-		cache: false,
-		contentType: false,
-		processData: false
-		});
-//		return false;
-		
-	}
-*/
 	this.showLockedAlert = function(msg){
 		$('.modal-alert').modal({ show : false, keyboard : false, backdrop : 'static' });
 		$('.modal-alert .modal-header h3').text('Success!');
@@ -224,11 +179,6 @@ $('#btn-delsig').click(function(){$('#signature').jSignature('clear');});
 		setTimeout(function(){window.location.href = '/';}, 3000);
 	}
 }
-
-//$(window).bind('beforeunload', function(){
-//	if (logout === false)
-//  return 'Are you sure you want to leave?';
-//});
 
 FormController.prototype.onUpdateSuccess = function()
 {

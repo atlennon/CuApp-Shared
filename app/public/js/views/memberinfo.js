@@ -3,59 +3,26 @@ $(document).ready(function(){
 
 	var fc = new FormController();
 	var fv = new InfoFormValidator();
-/*	
-	
-	$('#member-form').ajaxForm({
-		beforeSubmit : function(formData, jqForm, options){
-			if (fv.validateInfoForm() == false){
-				return false;
-			} 	else{
-			// push the hidden username field onto the form data array //
-				formData.push({creator:'user', value:$('#user').val()})
-				return true;
-			}
-		},
-	success	: function(responseText, status, xhr, $form){
-			if (status == 'success') fc.onUpdateSuccess();
-		},
-		error : function(e){
-			    fv.showDatabaseError();
-			}	
-	});
 
-
-	//Program a custom submit function for the form
-	$("#member-form").bind('submit',function(event){
+window.addEventListener('onorientationchange', function () {
+    if (window.orientation == -90) {
+        document.getElementById('orient').className = 'orientright';
+    }
+    if (window.orientation == 90) {
+        document.getElementById('orient').className = 'orientleft';
+    }
+    if (window.orientation == 0) {
+        document.getElementById('orient').className = '';
+    }
+}, true);
  
-	//disable the default form submission
-	event.preventDefault();
- 
-	//grab all form data  
-	var formData = new FormData($(this)[0]);
- 
-	  $.ajax({
-		url: '/memberinfo',
-		type: 'POST',
-		data: formData,
-		async: false,
-		cache: false,
-		contentType: false,
-		processData: false,
-		success: function (returndata) {
-		  alert(returndata);
-		}
-	  });
-	 
-	  return false;
-	});
-*/	
 	//$('#fname-tf').focus();
 	$('#github-banner').css('top', '40px');
 	
 	
 	//Add signature Function
 	
-	$("#signature").jSignature();
+	$("#signature").jSignature({color:"#00f",lineWidth:0,height:200,width:300});
 	
 // customize the member form //
 	
@@ -68,8 +35,6 @@ $(document).ready(function(){
 	$('#user-tf').attr('disabled', 'disabled');
 	$('#member-form-btn1').html('Submit');
 	$('#member-form-btn1').addClass('btn-success');
-	$('#member-form-btn2').html('Cancel');
-	$('#member-form-btn2').addClass('btn-danger');
 
 // Hide all components except for info form on load	
 

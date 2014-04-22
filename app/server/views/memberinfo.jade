@@ -64,15 +64,15 @@ block content
 							#addr1-cg.control-group
 								label.control-label(for='addr1-tf') Street Address
 								.controls
-									input#name-tf.input-xlarge(type='text', name='addr1', value= member.addr1)
+									input#addr1-tf.input-xlarge(type='text', name='addr1', value= member.addr1)
 							#city-cg.control-group
 								label.control-label(for='city-tf') City
 								.controls
-									input#city-tf.input-xlarge(type='text', name='city', value= member.city)
+									input#city-tf.input-large(type='text', name='city', value= member.city)
 							#slist-cg.control-group
 								label.control-label(for='state-list') State
 								.controls
-									select#state-list(name='state')
+									select#state-list.input-small(name='state')
 										each item in states
 											option(selected=item.name == member.state)= item.name
 							#zip-cg.control-group
@@ -85,9 +85,11 @@ block content
 						h1
 						fieldset
 							#depositType-cg.control-group
-								label.control-label(for='depositType-tf') Deposit Type
+								label.control-label(for='deposit-list') Deposit Type
 								.controls
-									input#depositType-tf.input-medium(type='text', name='depositType', value= member.depositType)
+									select#deposit-list.input-medium(name='deposit')
+										each item in deposits
+											option(selected=item.name == member.depositType)= item.name
 							#depositAmt-cg.control-group
 								label.control-label(for='depositAmt-tf') Deposit Amount
 								.controls
@@ -119,10 +121,31 @@ block content
 			
 			#review-scrollpoint
 				#info-form-container.well
-				
-					Are you sure you want to submit the form?
-					br
-					br
+					label.control-label(for='fname-rev') First Name
+					input#fname-rev( type='text', name='fname-rev', readonly)
+					label.control-label(for='mname-rev') Middle Name
+					input#mname-rev( type='text', name='mname-rev', readonly)
+					label.control-label(for='lname-rev') Last Name
+					input#lname-rev( type='text', name='lname-rev', readonly)
+					label.control-label(for='email-rev') Email
+					input#email-rev( type='text', name='email-rev', readonly)
+					label.control-label(for='ssn-rev') SSN#
+					input#ssn-rev( type='text', name='ssn-rev', readonly)
+					hr
+					label.control-label(for='addr-rev') Street Address
+					input#addr-rev( type='text', name='addr-rev', readonly)
+					label.control-label(for='city-rev') City
+					input#city-rev( type='text', name='city-rev', readonly)
+					label.control-label(for='state-rev') State
+					input#state-rev( type='text', name='state-rev', readonly)
+					label.control-label(for='zip-rev') Zip
+					input#zip-rev( type='text', name='zip-rev', readonly)
+					hr
+					label.control-label(for='deposit-type-rev') Deposit Type
+					input#deposit-type-rev( type='text', name='deposit-type-rev', readonly)
+					label.control-label(for='deposit-amt-rev') Deposit Amount
+					input#deposit-amt-rev( type='text', name='deposit-amt-rev', readonly)
+					hr
 					input.button(type='submit')#member-form-btn1.btn
 				
 				

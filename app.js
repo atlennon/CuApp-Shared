@@ -6,7 +6,7 @@ var fs = require('fs');
 var PDFDocument = require('pdfkit');
 var expressValidator = require("express-validator");
 var port = (process.env.VMC_APP_PORT || 80);
-var host = (process.env.VCAP_APP_HOST || 'localhost');
+var host = (process.env.VCAP_APP_HOST || '192.168.193.82');
 var db = require('./app/server/modules/db-connect');
 
 app.configure(function(){

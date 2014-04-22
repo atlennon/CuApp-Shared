@@ -1,0 +1,31 @@
+
+extends layout
+
+block scripts
+	script(src='/vendor/jquery.min.js')
+	script(src='/vendor/jquery.form.js')
+	script(src='/vendor/bootstrap-modal.js')
+	script(src='/vendor/bootstrap-transition.js')
+	script(src='/vendor/jquery.scrollTo-1.4.3.1-min.js')
+	script(src='vendor/jSignature.min.js')
+	script(src='/js/views/memberinfo.js')
+	script(src='/js/controllers/formController.js')
+	script(src='/js/form-validators/formValidator.js')
+
+block content
+		div.navbar.navbar-fixed-top
+		div.navbar-inner
+			div.container-fluid
+					ul#global-nav.nav.pull-left
+						a(href='#').brand Member Info
+					ul#global-nav.nav.pull-right
+							button#btn-logout.btn.btn-primary
+								i.icon-lock.icon-white
+								| Sign Out
+
+		br
+		br
+		br
+		#download
+			a(href=link)
+				img(align:"left",src="/img/pdf.jpg")

@@ -1,6 +1,6 @@
 
+var CT = require('./server/modules/country-list');
 var ST = require('./server/modules/state-list');
-var DL = require('./server/modules/deposit-list');
 var AM = require('./server/modules/account-manager');
 var PDF = require('./pdfFormCreator');
 var EM = require('./server/modules/email-dispatcher');
@@ -96,7 +96,6 @@ module.exports = function(app) {
 			res.render('memberinfo', {
 			title : 'Member Info',
 			states : ST,
-			deposits : DL,
 			udata : req.session.user
 			});
 		}
@@ -112,8 +111,23 @@ app.post('/memberinfo', function(req, res) {
 			}
 		else{
 				
+					member = new Object();
+					member.fname=req.param('fname');
+					member.mname=req.param('mname');
+					member.lname=req.param('lname');
+					member.email=req.param('email');
+					member.state=req.param('addr1');
+					member.state=req.param('state');
+					member.state=req.param('zip');
+					member.ssn=req.param('ssn');
+					member.depositamt=req.param('depositAmt');
+					member.depsittype=req.param('depositType');
+					member.ssn=req.param('ssn');
+					member.creator=req.param('creator');
+				
 				var output;
 				var imageName = req.files.identification.name
+				var sigdata = req.param('signature_capture');
 
 				/// If there's an error
 				if(!imageName){
@@ -125,8 +139,26 @@ app.post('/memberinfo', function(req, res) {
 				} 
 				else {
 				
-				var sigdata = req.param('signature_capture');
+				fs.readFile(req.files.identification.path, function (err, data) {		
+				  var idPath = __dirname + "/public/uploads/" + member.lname + '.jpg';
+				  
+				  /// write file to uploads folder
+				  fs.writeFile(idPath, data, function (err) {if (err) throw err;});
+				
+				  });
+				
+				}
+				
 
+				if(sigdata = 'undefined')
+				{
+				console.log("There was an error with the signature");
+					res.redirect("/");
+					res.end();
+				}
+				else
+				{
+				
 				function decodeBase64Image(dataString) {
 				var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
 				response = {};
@@ -137,65 +169,23 @@ app.post('/memberinfo', function(req, res) {
 
 				response.type = matches[1];
 				response.data = new Buffer(matches[2], 'base64');
+				
+				var imageBuffer = decodeBase64Image(sigdata);
+				var sigPath = __dirname + "/public/uploads/" + member.lname + 'sig.jpg';
+				fs.writeFile(sigPath, imageBuffer.data, function(err) {if (err) throw err;});
 
 				return response;
 				}
-				
-					member = new Object();
-					member.fname=req.param('fname-rev');
-					member.mname=req.param('mname-rev');
-					member.lname=req.param('lname-rev');
-					member.email=req.param('email-rev');
-					member.addr=req.param('addr-rev');
-					member.city=req.param('city-rev');
-					member.state=req.param('state-rev');
-					member.zip=req.param('zip-rev');
-					member.ssn=req.param('ssn-rev');
-					member.depositamt=req.param('deposit-amt-rev');
-					member.depsittype=req.param('deposit-type-rev');
-					member.creator=req.param('creator');
-				  
-				  var imageBuffer = decodeBase64Image(sigdata);
-				  var sigPath = __dirname + "/public/uploads/" + member.lname + 'sig.jpg';
-				  fs.writeFile(sigPath, imageBuffer.data, function(err) {if (err) throw err;});
+					
 
-				  fs.readFile(req.files.identification.path, function (err, data) {		
-				  var idPath = __dirname + "/public/uploads/" + member.lname + '.jpg';
-				  
-				  /// write file to uploads folder
-				  fs.writeFile(idPath, data, function (err) {if (err) throw err;});
-				
-				  });
+						setTimeout(function(){output=PDF.create(member);}, 30000); // 2 seconds pass..
+						console.log('Creating PDF');
 						var serverpath = 'http://localhost/pdf/'+ member.creator + '.pdf'
-						console.log('Wait for images to be uploaded');
-						setTimeout(function(){PDF.create(member);}, 5000); // wait 1 seconds pass seconds to allow file upload..
-						console.log('Wait for PDF to be created');
-						setTimeout(function(){res.render('download', {
-						title : 'Download',
-						link : serverpath
-						})}, 10000); // 2 seconds render new page..
-						//if(output)
-						//res.redirect(serverpath);
-						//else
-						//setTimeout(function(){console.log('More Delay'); res.redirect(serverpath);}, 10000); // 2 seconds pass..
+						
+						res.redirect(serverpath);
+				}
 			}
-		}
-});	
-
-// Member Forms //
-
-	app.get('/download', function(req, res) {
-	    if (req.session.user == null){
-	// if user is not logged-in redirect back to login page //
-	        res.redirect('/');
-	    }   	
-		else {
-			res.render('download', {
-			title : 'Download',
-			link : serverpath
-			});
-		}
-	});
+		});	
 
 
 	
