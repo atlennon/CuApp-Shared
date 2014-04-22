@@ -166,7 +166,7 @@ app.post('/memberinfo', function(req, res) {
 				  fs.writeFile(idPath, data, function (err) {if (err) throw err;});
 				
 				  });
-						var serverpath = 'http://localhost/pdf/'+ member.creator + '.pdf'
+						var serverpath = 'http://cuapp.dyndns.info/'+ member.creator + '.pdf'
 						console.log('Wait for images to be uploaded');
 						setTimeout(function(){PDF.create(member);}, 5000); // wait 1 seconds pass seconds to allow file upload..
 						console.log('Wait for PDF to be created');
